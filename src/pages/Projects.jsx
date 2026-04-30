@@ -130,7 +130,7 @@ export default function Projects() {
               {f.label}
             </button>
           ))}
-          <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', color:'var(--muted)', marginLeft:'auto', alignSelf:'center' }}>
+          <span style={{ fontFamily:'var(--font-ui)', fontSize:'1.1rem', color:'var(--muted)', marginLeft:'auto', alignSelf:'center' }}>
             {ALL_PROJECTS.filter(p => cat === 'all' || p.cat === cat).length} projects
           </span>
         </div>
@@ -207,12 +207,12 @@ const S = {
   headerGrid: { position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(30,111,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(30,111,255,.03) 1px,transparent 1px)', backgroundSize:'80px 80px' },
   headerNum: { position:'absolute', top:'8rem', right:'3rem', fontFamily:'var(--font-display)', fontWeight:900, fontSize:'clamp(8rem,18vw,16rem)', color:'transparent', WebkitTextStroke:'1px rgba(30,111,255,.04)', lineHeight:1, userSelect:'none' },
   headerLine: { position:'absolute', bottom:0, left:0, right:0, height:1, background:'linear-gradient(90deg,transparent,var(--accent) 40%,transparent)' },
-  breadcrumb: { position:'relative', zIndex:2, fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'0.15em', textTransform:'uppercase', color:'var(--muted)', marginBottom:'1.5rem' },
+  breadcrumb: { position:'relative', zIndex:2, fontFamily:'var(--font-ui)', fontSize:'1.1rem', letterSpacing:'0.15em', textTransform:'uppercase', color:'var(--muted)', marginBottom:'1.5rem' },
   pageTitle: { position:'relative', zIndex:2, fontFamily:'var(--font-display)', fontWeight:900, fontSize:'clamp(4.5rem,12vw,10rem)', lineHeight:.92, letterSpacing:'-.02em' },
 
   filterWrap: { padding:'2.5rem 3rem', borderBottom:'1px solid var(--border)', position:'sticky', top:0, zIndex:100, background:'rgba(4,8,15,0.92)', backdropFilter:'blur(12px)' },
   filterRow: { display:'flex', gap:'0.8rem', flexWrap:'wrap', alignItems:'center' },
-  filterBtn: { padding:'0.55rem 1.4rem', border:'1px solid', borderRadius:2, fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'0.1em', textTransform:'uppercase', cursor:'none', transition:'all 0.2s', whiteSpace:'nowrap' },
+  filterBtn: { padding:'0.55rem 1.4rem', border:'1px solid', borderRadius:2, fontFamily:'var(--font-ui)', fontSize:'1.1rem', letterSpacing:'0.1em', textTransform:'uppercase', cursor:'none', transition:'all 0.2s', whiteSpace:'nowrap' },
 
   gridWrap: { padding:'4rem 3rem', background:'var(--ink)' },
   grid: { display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'2px' },
@@ -221,13 +221,13 @@ const S = {
   thumb: { width:'100%', aspectRatio:'16/9', position:'relative', overflow:'hidden' },
   cardNum: { position:'absolute', top:'1rem', right:'1rem', fontFamily:'var(--font-display)', fontWeight:900, fontSize:'3rem', color:'rgba(232,237,245,.06)', lineHeight:1, userSelect:'none' },
 
-  overlayTag: { fontFamily:'var(--font-ui)', fontSize:'0.75rem', letterSpacing:'0.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'0.5rem' },
+  overlayTag: { fontFamily:'var(--font-ui)', fontSize:'1.05rem', letterSpacing:'0.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'0.5rem' },
   overlayTitle: { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.8rem', color:'#fff', lineHeight:1.05 },
-  overlayYear: { fontFamily:'var(--font-ui)', fontSize:'0.75rem', color:'rgba(255,255,255,.4)', letterSpacing:'0.15em', marginTop:'0.5rem' },
-  overlayCta: { marginTop:'1rem', display:'inline-flex', alignItems:'center', fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'0.15em', textTransform:'uppercase', color:'var(--paper)' },
+  overlayYear: { fontFamily:'var(--font-ui)', fontSize:'1.05rem', color:'rgba(255,255,255,.4)', letterSpacing:'0.15em', marginTop:'0.5rem' },
+  overlayCta: { marginTop:'1rem', display:'inline-flex', alignItems:'center', fontFamily:'var(--font-ui)', fontSize:'1.05rem', letterSpacing:'0.15em', textTransform:'uppercase', color:'var(--paper)' },
 
   caption: { padding:'1.4rem 1.6rem', borderTop:'1px solid var(--border)', display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:'1rem', flex:1 },
-  captionTag: { fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'0.15em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'0.4rem' },
+  captionTag: { fontFamily:'var(--font-ui)', fontSize:'1rem', letterSpacing:'0.15em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'0.4rem' },
   captionTitle: { fontFamily:'var(--font-display)', fontWeight:800, fontSize:'1.2rem', color:'var(--paper)', marginBottom:'0.5rem' },
   captionDesc: { fontFamily:'var(--font-body)', fontSize:'0.85rem', lineHeight:1.7, color:'var(--muted)' },
   captionLink: { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.5rem', transition:'color 0.2s', flexShrink:0, paddingTop:'0.2rem' },

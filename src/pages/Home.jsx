@@ -30,8 +30,8 @@ const PROJECTS = [
   { id:1, cat:'branding', tag:'Brand Identity', title:'NOVA\nCOLLECTIVE',  year:'2024', grad:'linear-gradient(135deg,#04080f 0%,#0d1a3a 40%,#1e6fff 100%)', link:'/project-nova', caption:'Nova Collective',        captionTag:'Brand Identity · 2024', num:'01', span8:true },
   { id:2, cat:'broadcast', tag:'Broadcast',      title:'DEEP CURRENT\nSERIES', year:'2024', grad:'linear-gradient(135deg,#060c18 0%,#0a1830 60%,#4a90d9 100%)' },
   { id:3, cat:'3d',       tag:'3D Animation',   title:'AURUM\nFRAGRANCE',   year:'2023', grad:'linear-gradient(135deg,#06101a 0%,#0c2040 60%,#7aa8e8 100%)' },
-  { id:4, cat:'ui',       tag:'UI Motion',       title:'PULSE\nAPP',         year:'2023', grad:'linear-gradient(135deg,#0a0614 0%,#180a30 60%,#6644cc 100%)', span5:true },
-  { id:5, cat:'branding', tag:'Branding',        title:'VERDANT\nSTUDIOS',   year:'2023', grad:'linear-gradient(135deg,#040c18 0%,#081828 60%,#0044cc 100%)', span7:true },
+  { id:4, cat:'ui',       tag:'UI Motion',       title:'PULSE\nAPP',         year:'2023', grad:'linear-gradient(135deg,#0a0614 0%,#180a30 60%,#6644cc 100%)', span6:true },
+  { id:5, cat:'branding', tag:'Branding',        title:'VERDANT\nSTUDIOS',   year:'2023', grad:'linear-gradient(135deg,#040c18 0%,#081828 60%,#0044cc 100%)', span6b:true },
   { id:6, cat:'broadcast', tag:'Title Sequence', title:'ECHOES',             year:'2022', grad:'linear-gradient(160deg,#04080f 0%,#091428 30%,#1e6fff 70%,#7aa8e8 100%)', wide:true },
 ]
 
@@ -47,8 +47,8 @@ export default function Home() {
   // grid-column helper
   const getCol = (p, i) => {
     if (p.span8) return 'span 8'
-    if (p.span5) return 'span 5'
-    if (p.span7) return 'span 7'
+    if (p.span6) return 'span 6'
+    if (p.span6b) return 'span 6'
     if (p.wide)  return 'span 12'
     return 'span 4'
   }
@@ -275,10 +275,10 @@ const H = {
   scroll:     { display:'flex', alignItems:'center', gap:'1.2rem' },
   scrollLine: { width:60, height:1, background:'var(--muted)', position:'relative', overflow:'hidden' },
   scrollInner:{ position:'absolute', left:'-100%', top:0, width:'100%', height:'100%', background:'var(--accent)', animation:'slide 2.2s 1.2s infinite' },
-  scrollLabel:{ fontFamily:'var(--font-ui)', fontSize:'0.75rem', letterSpacing:'.22em', textTransform:'uppercase', color:'var(--muted)' },
+  scrollLabel:{ fontFamily:'var(--font-ui)', fontSize:'1.05rem', letterSpacing:'.22em', textTransform:'uppercase', color:'var(--muted)' },
   stats:      { display:'flex', gap:'3rem', flexWrap:'wrap' },
   statNum:    { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'2.8rem', lineHeight:1 },
-  statLabel:  { fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--muted)', marginTop:'.3rem' },
+  statLabel:  { fontFamily:'var(--font-ui)', fontSize:'1rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--muted)', marginTop:'.3rem' },
 }
 
 const M = {
@@ -291,7 +291,7 @@ const M = {
 const SEC = {
   dark:  { padding:'8rem 3rem', background:'var(--ink)' },
   paper: { padding:'8rem 3rem', background:'var(--paper)', color:'var(--ink)' },
-  label: { fontFamily:'var(--font-ui)', fontSize:'0.8rem', letterSpacing:'.25em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'1rem', display:'flex', alignItems:'center', gap:'1rem' },
+  label: { fontFamily:'var(--font-ui)', fontSize:'1.1rem', letterSpacing:'.25em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'1rem', display:'flex', alignItems:'center', gap:'1rem' },
   title: { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'clamp(3.5rem,8vw,7rem)', lineHeight:.95, letterSpacing:'-.01em', marginBottom:'4rem' },
 }
 
@@ -302,10 +302,10 @@ const R = {
   glow:      { position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:400, height:400, background:'radial-gradient(circle,rgba(30,111,255,.07),transparent 70%)' },
   corner:    { position:'absolute', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'0.85rem', letterSpacing:'.15em', color:'rgba(232,237,245,.08)' },
   playBtn:   { width:80, height:80, borderRadius:'50%', border:'1.5px solid rgba(232,237,245,.35)', display:'flex', alignItems:'center', justifyContent:'center', position:'relative', zIndex:2 },
-  playLabel: { position:'relative', zIndex:2, fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.25em', textTransform:'uppercase', color:'var(--muted)' },
+  playLabel: { position:'relative', zIndex:2, fontFamily:'var(--font-ui)', fontSize:'1.05rem', letterSpacing:'.25em', textTransform:'uppercase', color:'var(--muted)' },
   infoRow:   { display:'grid', gridTemplateColumns:'repeat(3,1fr)', borderTop:'1px solid var(--border)', marginTop:2 },
   infoItem:  { padding:'1.4rem 2rem', borderRight:'1px solid var(--border)' },
-  infoKey:   { fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--muted)', marginBottom:'.5rem' },
+  infoKey:   { fontFamily:'var(--font-ui)', fontSize:'1rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--muted)', marginBottom:'.5rem' },
   infoVal:   { fontFamily:'var(--font-body)', fontSize:'0.9rem' },
 }
 
@@ -319,14 +319,14 @@ const MOD = {
 
 const P = {
   filterRow: { display:'flex', gap:'.8rem', flexWrap:'wrap', marginBottom:'3.5rem' },
-  filterBtn: { padding:'.55rem 1.3rem', border:'1px solid', borderRadius:2, fontFamily:'var(--font-ui)', fontSize:'0.8rem', letterSpacing:'.12em', textTransform:'uppercase', cursor:'none', transition:'all .2s' },
+  filterBtn: { padding:'.55rem 1.3rem', border:'1px solid', borderRadius:2, fontFamily:'var(--font-ui)', fontSize:'1.1rem', letterSpacing:'.12em', textTransform:'uppercase', cursor:'none', transition:'all .2s' },
   grid:      { display:'grid', gridTemplateColumns:'repeat(12,1fr)', gap:2 },
-  tag:       { fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' },
+  tag:       { fontFamily:'var(--font-ui)', fontSize:'1rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' },
   projTitle: { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.8rem', letterSpacing:'.04em', color:'#fff', lineHeight:1.05 },
-  year:      { fontFamily:'var(--font-ui)', marginTop:'.6rem', fontSize:'0.75rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' },
-  cta:       { fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', alignItems:'center', gap:'.6rem', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' },
+  year:      { fontFamily:'var(--font-ui)', marginTop:'.6rem', fontSize:'1.05rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' },
+  cta:       { fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', alignItems:'center', gap:'.6rem', fontSize:'1.05rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' },
   caption:   { padding:'1rem 1.4rem', background:'var(--ink)', display:'flex', justifyContent:'space-between', alignItems:'center' },
-  captionTag:  { fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--accent)' },
+  captionTag:  { fontFamily:'var(--font-ui)', fontSize:'1rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--accent)' },
   captionTitle:{ fontFamily:'var(--font-body)', fontSize:'1.05rem', color:'var(--paper)', marginTop:'.15rem' },
   captionNum:  { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'2.4rem', color:'rgba(232,237,245,.05)' },
 }
@@ -336,5 +336,5 @@ const A = {
   quote:   { fontFamily:'var(--font-body)', fontStyle:'italic', fontSize:'clamp(1.8rem,3.5vw,2.8rem)', lineHeight:1.3 },
   body:    { fontFamily:'var(--font-body)', fontSize:'1rem', lineHeight:1.9, color:'rgba(255,255,255,.82)' },
   tools:   { marginTop:'1.8rem', display:'flex', flexWrap:'wrap', gap:'.5rem' },
-  toolTag: { padding:'.3rem .9rem', border:'1px solid rgba(255,255,255,.25)', fontFamily:'var(--font-ui)', fontSize:'0.75rem', letterSpacing:'.12em', textTransform:'uppercase', borderRadius:2 },
+  toolTag: { padding:'.3rem .9rem', border:'1px solid rgba(255,255,255,.25)', fontFamily:'var(--font-ui)', fontSize:'1.05rem', letterSpacing:'.12em', textTransform:'uppercase', borderRadius:2 },
 }

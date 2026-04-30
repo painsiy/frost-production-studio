@@ -113,7 +113,7 @@ export default function ProjectNova() {
         </div>
         <div style={S.scrollHint}>
           <div style={S.scrollArrow} />
-          <span style={{ fontFamily:'var(--font-ui)', fontSize:'.5rem', letterSpacing:'.25em', textTransform:'uppercase', color:'var(--muted)' }}>Scroll to explore</span>
+          <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.25em', textTransform:'uppercase', color:'var(--muted)' }}>Scroll to explore</span>
         </div>
       </section>
 
@@ -129,7 +129,7 @@ export default function ProjectNova() {
             </div>
             <blockquote style={S.briefPull}>
               "We want people to watch our logo and feel something they can't quite name."
-              <footer style={{ marginTop:'.8rem', fontFamily:'var(--font-ui)', fontSize:'.56rem', color:'var(--muted)', fontStyle:'normal' }}>— Léa Sørensen, Creative Director, Nova Collective</footer>
+              <footer style={{ marginTop:'.8rem', fontFamily:'var(--font-ui)', fontSize:'0.9rem', color:'var(--muted)', fontStyle:'normal' }}>— Léa Sørensen, Creative Director, Nova Collective</footer>
             </blockquote>
           </div>
           <div className="reveal d1">
@@ -237,12 +237,12 @@ export default function ProjectNova() {
             <div key={i} className="reveal" style={S.timelineItem}>
               <div style={S.devWeek}>{item.week}</div>
               <div style={{ fontFamily:'var(--font-body)', fontStyle:'italic', fontSize:'1.4rem', color:'var(--paper)', marginBottom:'1rem' }}>{item.title}</div>
-              <div style={{ fontFamily:'var(--font-body)', fontSize:'.78rem', lineHeight:1.9, color:'var(--muted)', maxWidth:'52ch' }}>{item.body}</div>
+              <div style={{ fontFamily:'var(--font-body)', fontSize:'1.08rem', lineHeight:1.9, color:'var(--muted)', maxWidth:'52ch' }}>{item.body}</div>
               {item.strip && (
                 <div style={S.iterStrip}>
                   {['V.01','V.02','V.03','V.04','V.05','V.06','V.07'].map((v,j) => (
                     <div key={v} style={{ ...S.iterFrame, background:`linear-gradient(${135+j*15}deg,#04080f 0%,#${['1e6fff','7aa8e8','0044cc','4a90d9','6644cc','1e6fff','7aa8e8'][j]} 100%)` }}>
-                      <span style={{ position:'absolute', bottom:'.5rem', left:'.8rem', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'.8rem', letterSpacing:'.12em', color:'rgba(232,237,245,.25)' }}>{v}</span>
+                      <span style={{ position:'absolute', bottom:'.5rem', left:'.8rem', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'1.1rem', letterSpacing:'.12em', color:'rgba(232,237,245,.25)' }}>{v}</span>
                     </div>
                   ))}
                 </div>
@@ -283,7 +283,7 @@ export default function ProjectNova() {
           {FEEDBACK.map((fb, i) => (
             <div key={i} style={S.feedbackItem}>
               <div style={S.fbRound}>{fb.round}</div>
-              <div style={{ fontFamily:'var(--font-body)', fontSize:'.72rem', lineHeight:1.75, color:'var(--paper)' }}>{fb.note}</div>
+              <div style={{ fontFamily:'var(--font-body)', fontSize:'1.05rem', lineHeight:1.75, color:'var(--paper)' }}>{fb.note}</div>
               <div style={{ ...S.fbStatus, background: fb.resolved ? 'rgba(30,111,255,.1)' : 'rgba(122,168,232,.1)', color: fb.resolved ? 'var(--accent)' : 'var(--ice)' }}>{fb.status}</div>
             </div>
           ))}
@@ -299,15 +299,15 @@ export default function ProjectNova() {
             <div style={S.rplayBtn}>
               <svg width="24" viewBox="0 0 24 24" fill="var(--paper)" style={{ marginLeft:3 }}><path d="M8 5v14l11-7z"/></svg>
             </div>
-            <div style={{ fontFamily:'var(--font-ui)', fontSize:'.56rem', letterSpacing:'.25em', textTransform:'uppercase', color:'rgba(232,237,245,.4)' }}>Play Brand Film — 01:32</div>
+            <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.9rem', letterSpacing:'.25em', textTransform:'uppercase', color:'rgba(232,237,245,.4)' }}>Play Brand Film — 01:32</div>
           </div>
-          <span style={{ position:'absolute', top:'1.5rem', left:'1.5rem', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'.85rem', letterSpacing:'.12em', color:'rgba(232,237,245,.08)' }}>NOVA COLLECTIVE — BRAND FILM 2024</span>
-          <span style={{ position:'absolute', bottom:'1.5rem', right:'1.5rem', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'.85rem', letterSpacing:'.12em', color:'rgba(232,237,245,.08)' }}>01:32 · PRORES 4444 · 4K · FROST PRODUCTION STUDIO</span>
+          <span style={{ position:'absolute', top:'1.5rem', left:'1.5rem', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'1.1rem', letterSpacing:'.12em', color:'rgba(232,237,245,.08)' }}>NOVA COLLECTIVE — BRAND FILM 2024</span>
+          <span style={{ position:'absolute', bottom:'1.5rem', right:'1.5rem', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'1.1rem', letterSpacing:'.12em', color:'rgba(232,237,245,.08)' }}>01:32 · PRORES 4444 · 4K · FROST PRODUCTION STUDIO</span>
         </div>
         <div className="reveal d1" style={S.resultGrid}>
           {RESULT_CELLS.map(({ bg, label },i) => (
             <div key={i} style={{ aspectRatio:'1', background:bg, position:'relative', overflow:'hidden' }}>
-              <div style={{ position:'absolute', bottom:0, left:0, right:0, padding:'.8rem', background:'linear-gradient(to top,rgba(0,0,0,.7),transparent)', fontFamily:'var(--font-ui)', fontSize:'.48rem', letterSpacing:'.18em', textTransform:'uppercase', color:'rgba(232,237,245,.45)' }}>{label}</div>
+              <div style={{ position:'absolute', bottom:0, left:0, right:0, padding:'.8rem', background:'linear-gradient(to top,rgba(0,0,0,.7),transparent)', fontFamily:'var(--font-ui)', fontSize:'0.85rem', letterSpacing:'.18em', textTransform:'uppercase', color:'rgba(232,237,245,.45)' }}>{label}</div>
             </div>
           ))}
         </div>
@@ -334,11 +334,11 @@ export default function ProjectNova() {
       {/* NEXT */}
       <section style={{ ...S.chapter, textAlign:'center', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 60% 50% at 50% 50%,rgba(30,111,255,.04),transparent 70%)' }} />
-        <p className="reveal" style={{ fontFamily:'var(--font-ui)', fontSize:'.52rem', letterSpacing:'.28em', textTransform:'uppercase', color:'var(--muted)', marginBottom:'1.5rem' }}>You've reached the end</p>
+        <p className="reveal" style={{ fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.28em', textTransform:'uppercase', color:'var(--muted)', marginBottom:'1.5rem' }}>You've reached the end</p>
         <h2 className="reveal" style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'clamp(3.5rem,9vw,8rem)', lineHeight:.9, letterSpacing:'-.02em', marginBottom:'1rem' }}>
           Start Your<br/><span style={{ color:'var(--accent)' }}>Project</span>
         </h2>
-        <p className="reveal" style={{ fontFamily:'var(--font-body)', fontSize:'.78rem', color:'var(--muted)', letterSpacing:'.1em', marginBottom:'3rem' }}>Have something as ambitious? Let's talk.</p>
+        <p className="reveal" style={{ fontFamily:'var(--font-body)', fontSize:'1.08rem', color:'var(--muted)', letterSpacing:'.1em', marginBottom:'3rem' }}>Have something as ambitious? Let's talk.</p>
         <div className="reveal d1" style={{ display:'flex', justifyContent:'center', gap:'1rem', flexWrap:'wrap' }}>
           <Link to="/contact" className="btn-primary">Start a Project →</Link>
           <Link to="/" className="btn-outline">← Back to Home</Link>
@@ -355,7 +355,7 @@ function ChapterHeader({ num, label, title, light, accent }) {
     <div style={{ display:'flex', alignItems:'flex-start', gap:'3rem', marginBottom:'5rem' }}>
       <div className="reveal" style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'6rem', lineHeight:.85, color:'transparent', WebkitTextStroke:`1px ${numColor}`, flexShrink:0, userSelect:'none' }}>{num}</div>
       <div>
-        <div className="reveal d1" style={{ fontFamily:'var(--font-ui)', fontSize:'.52rem', letterSpacing:'.3em', textTransform:'uppercase', color: accent ? 'rgba(255,255,255,.55)' : 'var(--accent)', display:'flex', alignItems:'center', gap:'.8rem', marginBottom:'.8rem' }}>
+        <div className="reveal d1" style={{ fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.3em', textTransform:'uppercase', color: accent ? 'rgba(255,255,255,.55)' : 'var(--accent)', display:'flex', alignItems:'center', gap:'.8rem', marginBottom:'.8rem' }}>
           <span style={{ display:'block', width:20, height:1, background: accent ? 'rgba(255,255,255,.35)' : 'var(--accent)' }} />
           {label}
         </div>
@@ -377,59 +377,59 @@ const S = {
   heroInner: { position:'relative', zIndex:2, maxWidth:1200, width:'100%' },
   heroMeta: { display:'flex', alignItems:'center', gap:'2rem', marginBottom:'2.5rem' },
   heroIndex: { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'4rem', color:'transparent', WebkitTextStroke:'1px rgba(30,111,255,.3)', lineHeight:1 },
-  heroCategory: { fontFamily:'var(--font-ui)', fontSize:'.52rem', letterSpacing:'.28em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.4rem' },
-  heroDate: { fontFamily:'var(--font-ui)', fontSize:'.58rem', color:'var(--muted)', letterSpacing:'.15em' },
+  heroCategory: { fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.28em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.4rem' },
+  heroDate: { fontFamily:'var(--font-ui)', fontSize:'0.92rem', color:'var(--muted)', letterSpacing:'.15em' },
   heroTitle: { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'clamp(4.5rem,13vw,12rem)', lineHeight:.88, letterSpacing:'-.02em' },
-  heroTagline: { marginTop:'2rem', maxWidth:'44ch', fontFamily:'var(--font-body)', fontSize:'.88rem', lineHeight:1.9, color:'var(--ice)' },
+  heroTagline: { marginTop:'2rem', maxWidth:'44ch', fontFamily:'var(--font-body)', fontSize:'1.15rem', lineHeight:1.9, color:'var(--ice)' },
   heroStats: { display:'flex', gap:'3rem', marginTop:'3.5rem', paddingTop:'2.5rem', borderTop:'1px solid var(--border)', flexWrap:'wrap' },
   hstatVal: { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'2.2rem', color:'var(--paper)', lineHeight:1 },
-  hstatKey: { fontFamily:'var(--font-ui)', fontSize:'.5rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--muted)', marginTop:'.35rem' },
+  hstatKey: { fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--muted)', marginTop:'.35rem' },
   scrollHint: { position:'absolute', bottom:'3rem', left:'50%', transform:'translateX(-50%)', display:'flex', flexDirection:'column', alignItems:'center', gap:'.8rem' },
   scrollArrow: { width:1, height:50, background:'linear-gradient(to bottom,var(--accent),transparent)', animation:'scrollArrow 2s 1.3s infinite' },
 
   chapter: { padding:'7rem 3rem', borderTop:'1px solid var(--border)', background:'var(--ink)' },
 
   briefLayout: { display:'grid', gridTemplateColumns:'1fr 1fr', gap:'4rem', alignItems:'start' },
-  briefBody: { fontFamily:'var(--font-body)', fontSize:'.85rem', lineHeight:2, color:'var(--ice)' },
+  briefBody: { fontFamily:'var(--font-body)', fontSize:'1.1rem', lineHeight:2, color:'var(--ice)' },
   briefPull: { fontFamily:'var(--font-body)', fontStyle:'italic', fontSize:'clamp(1.4rem,2.8vw,2rem)', lineHeight:1.35, color:'var(--ice)', marginTop:'2rem', paddingLeft:'1.5rem', borderLeft:'2px solid var(--accent)' },
   sidebarBlock: { padding:'1.6rem', border:'1px solid var(--border)', marginBottom:2 },
-  sidebarKey: { fontFamily:'var(--font-ui)', fontSize:'.5rem', letterSpacing:'.24em', textTransform:'uppercase', color:'var(--muted)', marginBottom:'.6rem' },
-  sidebarVal: { fontFamily:'var(--font-body)', fontSize:'.8rem', color:'var(--paper)', lineHeight:1.7 },
-  tag: { padding:'.22rem .75rem', border:'1px solid rgba(30,111,255,.2)', fontFamily:'var(--font-ui)', fontSize:'.48rem', letterSpacing:'.16em', textTransform:'uppercase', color:'var(--muted)' },
+  sidebarKey: { fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.24em', textTransform:'uppercase', color:'var(--muted)', marginBottom:'.6rem' },
+  sidebarVal: { fontFamily:'var(--font-body)', fontSize:'1.1rem', color:'var(--paper)', lineHeight:1.7 },
+  tag: { padding:'.22rem .75rem', border:'1px solid rgba(30,111,255,.2)', fontFamily:'var(--font-ui)', fontSize:'0.85rem', letterSpacing:'.16em', textTransform:'uppercase', color:'var(--muted)' },
 
   discGrid: { display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:2, marginTop:'3rem' },
   discCard: { background:'#07111f', padding:'2.2rem 1.8rem', position:'relative', overflow:'hidden' },
   discNum: { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'3.5rem', color:'transparent', WebkitTextStroke:'1px rgba(30,111,255,.1)', lineHeight:1, marginBottom:'1rem' },
   discTitle: { fontFamily:'var(--font-body)', fontStyle:'italic', fontSize:'1.1rem', color:'var(--paper)', marginBottom:'.8rem' },
-  discBody: { fontFamily:'var(--font-body)', fontSize:'.72rem', lineHeight:1.9, color:'var(--muted)' },
+  discBody: { fontFamily:'var(--font-body)', fontSize:'1.05rem', lineHeight:1.9, color:'var(--muted)' },
   researchBoard: { display:'grid', gridTemplateColumns:'2fr 1fr 1fr', gridTemplateRows:'auto auto', gap:2, marginTop:'4rem' },
   boardCell: { position:'relative', overflow:'hidden', display:'flex', alignItems:'flex-end', padding:'1.5rem' },
-  boardLabel: { position:'relative', zIndex:2, fontFamily:'var(--font-ui)', fontSize:'.48rem', letterSpacing:'.2em', textTransform:'uppercase', color:'rgba(232,237,245,.4)', background:'rgba(0,0,0,.4)', padding:'.3rem .7rem' },
+  boardLabel: { position:'relative', zIndex:2, fontFamily:'var(--font-ui)', fontSize:'0.85rem', letterSpacing:'.2em', textTransform:'uppercase', color:'rgba(232,237,245,.4)', background:'rgba(0,0,0,.4)', padding:'.3rem .7rem' },
 
   conceptIntro: { fontFamily:'var(--font-body)', fontStyle:'italic', fontSize:'clamp(1.3rem,2.8vw,2rem)', lineHeight:1.45, maxWidth:'60ch', marginBottom:'4rem', color:'var(--ink)' },
   sketchGrid: { display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:2, marginBottom:'4rem' },
   sketchItem: { aspectRatio:'3/4', position:'relative', overflow:'hidden' },
-  sketchLabel: { position:'absolute', bottom:0, left:0, right:0, padding:'.8rem 1rem', background:'rgba(10,15,30,.06)', fontFamily:'var(--font-ui)', fontSize:'.48rem', letterSpacing:'.18em', textTransform:'uppercase', color:'rgba(10,15,30,.38)' },
+  sketchLabel: { position:'absolute', bottom:0, left:0, right:0, padding:'.8rem 1rem', background:'rgba(10,15,30,.06)', fontFamily:'var(--font-ui)', fontSize:'0.85rem', letterSpacing:'.18em', textTransform:'uppercase', color:'rgba(10,15,30,.38)' },
   directionsGrid: { display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:2 },
   dirCard: { padding:'2.2rem', border:'1px solid rgba(10,15,30,.08)', position:'relative', cursor:'none' },
   dirCardChosen: { background:'var(--ink)', borderColor:'var(--ink)' },
-  dirBadge: { fontFamily:'var(--font-ui)', fontSize:'.48rem', letterSpacing:'.2em', textTransform:'uppercase', marginBottom:'1.2rem' },
+  dirBadge: { fontFamily:'var(--font-ui)', fontSize:'0.85rem', letterSpacing:'.2em', textTransform:'uppercase', marginBottom:'1.2rem' },
   dirTitle: { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.8rem', lineHeight:1, marginBottom:'1rem' },
-  dirBody: { fontFamily:'var(--font-body)', fontSize:'.72rem', lineHeight:1.85 },
+  dirBody: { fontFamily:'var(--font-body)', fontSize:'1.05rem', lineHeight:1.85 },
   chosenMark: { position:'absolute', top:'1.2rem', right:'1.2rem', background:'var(--accent)', color:'#fff', fontFamily:'var(--font-ui)', fontSize:'.46rem', letterSpacing:'.18em', textTransform:'uppercase', padding:'.28rem .7rem' },
 
   timeline: { position:'relative', paddingLeft:'2rem', marginTop:'2rem', borderLeft:'1px solid var(--accent)' },
   timelineItem: { position:'relative', paddingBottom:'4rem', paddingLeft:'3rem', paddingTop:'.4rem' },
-  devWeek: { fontFamily:'var(--font-ui)', fontSize:'.5rem', letterSpacing:'.25em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.6rem' },
+  devWeek: { fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.25em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.6rem' },
   iterStrip: { display:'flex', gap:2, marginTop:'1.8rem', overflowX:'auto' },
   iterFrame: { flexShrink:0, width:200, height:130, position:'relative', overflow:'hidden' },
 
-  baLabel: { position:'absolute', top:'1rem', left:'1rem', zIndex:2, fontFamily:'var(--font-ui)', fontSize:'.5rem', letterSpacing:'.22em', textTransform:'uppercase', padding:'.32rem .85rem' },
+  baLabel: { position:'absolute', top:'1rem', left:'1rem', zIndex:2, fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.22em', textTransform:'uppercase', padding:'.32rem .85rem' },
   feedbackLog: { marginTop:'4rem', border:'1px solid var(--border)' },
-  feedbackHeader: { padding:'1.2rem 1.8rem', borderBottom:'1px solid var(--border)', fontFamily:'var(--font-ui)', fontSize:'.52rem', letterSpacing:'.22em', textTransform:'uppercase', color:'var(--muted)', display:'flex', justifyContent:'space-between' },
+  feedbackHeader: { padding:'1.2rem 1.8rem', borderBottom:'1px solid var(--border)', fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.22em', textTransform:'uppercase', color:'var(--muted)', display:'flex', justifyContent:'space-between' },
   feedbackItem: { display:'grid', gridTemplateColumns:'100px 1fr auto', gap:'1.5rem', padding:'1.4rem 1.8rem', borderBottom:'1px solid var(--border)', alignItems:'start' },
   fbRound: { fontFamily:'var(--font-display)', fontWeight:700, fontSize:'.9rem', letterSpacing:'.1em', color:'var(--muted)' },
-  fbStatus: { fontFamily:'var(--font-ui)', fontSize:'.48rem', letterSpacing:'.18em', textTransform:'uppercase', padding:'.22rem .65rem', whiteSpace:'nowrap' },
+  fbStatus: { fontFamily:'var(--font-ui)', fontSize:'0.85rem', letterSpacing:'.18em', textTransform:'uppercase', padding:'.22rem .65rem', whiteSpace:'nowrap' },
 
   rplayBtn: { width:70, height:70, borderRadius:'50%', border:'1.5px solid rgba(232,237,245,.35)', display:'flex', alignItems:'center', justifyContent:'center' },
   resultGrid: { display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:2, marginTop:0 },
@@ -437,9 +437,9 @@ const S = {
   outcomeGrid: { display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:2, marginBottom:'4rem', background:'rgba(255,255,255,.1)' },
   outcomeStat: { background:'var(--accent)', padding:'2.5rem 2rem', textAlign:'center' },
   osVal: { fontFamily:'var(--font-display)', fontWeight:900, fontSize:'4rem', lineHeight:1, color:'#fff' },
-  osKey: { fontFamily:'var(--font-ui)', fontSize:'.52rem', letterSpacing:'.22em', textTransform:'uppercase', color:'rgba(255,255,255,.55)', marginTop:'.5rem' },
-  osChange: { fontFamily:'var(--font-body)', fontSize:'.58rem', color:'rgba(255,255,255,.4)', marginTop:'.4rem' },
+  osKey: { fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.22em', textTransform:'uppercase', color:'rgba(255,255,255,.55)', marginTop:'.5rem' },
+  osChange: { fontFamily:'var(--font-body)', fontSize:'0.92rem', color:'rgba(255,255,255,.4)', marginTop:'.4rem' },
   testimony: { maxWidth:700, margin:'0 auto', textAlign:'center', padding:'0 2rem' },
   testimonyQuote: { fontFamily:'var(--font-body)', fontStyle:'italic', fontSize:'clamp(1.3rem,2.8vw,2rem)', lineHeight:1.45, color:'#fff', marginBottom:'1.8rem' },
-  testimonyAttr: { fontFamily:'var(--font-ui)', fontSize:'.56rem', letterSpacing:'.22em', textTransform:'uppercase', color:'rgba(255,255,255,.5)' },
+  testimonyAttr: { fontFamily:'var(--font-ui)', fontSize:'0.9rem', letterSpacing:'.22em', textTransform:'uppercase', color:'rgba(255,255,255,.5)' },
 }
