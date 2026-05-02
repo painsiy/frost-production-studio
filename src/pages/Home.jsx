@@ -27,12 +27,11 @@ const MARQUEE_ITEMS = [
 ]
 
 const PROJECTS = [
-  { id:1, cat:'branding', tag:'Brand Identity', title:'NOVA\nCOLLECTIVE',  year:'2024', grad:'linear-gradient(135deg,#04080f 0%,#0d1a3a 40%,#1e6fff 100%)', link:'/project-nova', caption:'Nova Collective',        captionTag:'Brand Identity · 2024', num:'01', span8:true },
-  { id:2, cat:'broadcast', tag:'Broadcast',      title:'DEEP CURRENT\nSERIES', year:'2024', grad:'linear-gradient(135deg,#060c18 0%,#0a1830 60%,#4a90d9 100%)' },
-  { id:3, cat:'3d',       tag:'3D Animation',   title:'AURUM\nFRAGRANCE',   year:'2023', grad:'linear-gradient(135deg,#06101a 0%,#0c2040 60%,#7aa8e8 100%)' },
-  { id:4, cat:'ui',       tag:'UI Motion',       title:'PULSE\nAPP',         year:'2023', grad:'linear-gradient(135deg,#0a0614 0%,#180a30 60%,#6644cc 100%)', span6:true },
-  { id:5, cat:'branding', tag:'Branding',        title:'VERDANT\nSTUDIOS',   year:'2023', grad:'linear-gradient(135deg,#040c18 0%,#081828 60%,#0044cc 100%)', span6b:true },
-  { id:6, cat:'broadcast', tag:'Title Sequence', title:'ECHOES',             year:'2022', grad:'linear-gradient(160deg,#04080f 0%,#091428 30%,#1e6fff 70%,#7aa8e8 100%)', wide:true },
+  { id:1, cat:'branding', tag:'Motion Design · Brand Video', title:'RIDE\nFLOW',      year:'2024', grad:'linear-gradient(160deg,#040d08 0%,#071410 40%,#0f7a3c 80%,#22c55e 100%)', link:'/project-rideflow', caption:'Rideflow', captionTag:'Motion Design · 2024', num:'01', span8:true },
+  { id:2, cat:'branding', tag:'Brand Identity', title:'NOVA\nCOLLECTIVE',  year:'2024', grad:'linear-gradient(135deg,#04080f 0%,#0d1a3a 40%,#1e6fff 100%)', link:'/project-nova' },
+  { id:3, cat:'broadcast', tag:'Broadcast',     title:'DEEP CURRENT\nSERIES', year:'2024', grad:'linear-gradient(135deg,#060c18 0%,#0a1830 60%,#4a90d9 100%)' },
+  { id:4, cat:'3d',       tag:'3D Animation',   title:'AURUM\nFRAGRANCE',   year:'2023', grad:'linear-gradient(135deg,#06101a 0%,#0c2040 60%,#7aa8e8 100%)', span6:true },
+  { id:5, cat:'ui',       tag:'UI Motion',       title:'PULSE\nAPP',         year:'2023', grad:'linear-gradient(135deg,#0a0614 0%,#180a30 60%,#6644cc 100%)', span6b:true },
 ]
 
 const FILTERS = ['all','branding','broadcast','3d','ui']

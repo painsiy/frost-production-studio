@@ -9,6 +9,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Projects from './pages/Projects'
 import ProjectNova from './pages/ProjectNova'
+import ProjectRideflow from './pages/ProjectRideflow'
 
 export default function App() {
   const { pathname } = useLocation()
@@ -27,7 +28,8 @@ export default function App() {
         <Route path="/projects"     element={<Projects />} />
         <Route path="/about"        element={<About />} />
         <Route path="/contact"      element={<Contact />} />
-        <Route path="/project-nova" element={<ProjectNova />} />
+        <Route path="/project-nova"     element={<ProjectNova />} />
+        <Route path="/project-rideflow" element={<ProjectRideflow />} />
       </Routes>
       <Footer />
     </>

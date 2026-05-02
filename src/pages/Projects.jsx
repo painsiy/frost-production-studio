@@ -21,7 +21,14 @@ function useReveal() {
 
 const ALL_PROJECTS = [
   {
-    id: 1, cat: 'branding', num: '01',
+    id: 0, cat: 'branding', num: '01',
+    tag: 'Motion Design · Brand Video', title: 'RIDEFLOW', year: '2024',
+    desc: 'A complete motion content package — brand film, dashboard walkthrough, and social content for a Lagos-based logistics SaaS platform.',
+    grad: 'linear-gradient(160deg,#040d08 0%,#071410 40%,#0f7a3c 80%,#22c55e 100%)',
+    link: '/project-rideflow', featured: true, visible: true,
+  },
+  {
+    id: 1, cat: 'branding', num: '02',
     tag: 'Brand Identity', title: 'NOVA COLLECTIVE', year: '2024',
     desc: 'A complete motion identity system for a Berlin-based creative studio — from logo sting to 90-second brand film.',
     grad: 'linear-gradient(135deg,#04080f 0%,#0d1a3a 40%,#1e6fff 100%)',
@@ -51,12 +58,7 @@ const ALL_PROJECTS = [
     desc: 'Brand motion for an independent film production house — identity animations and festival title cards.',
     grad: 'linear-gradient(135deg,#040c18 0%,#081828 60%,#0044cc 100%)',
   },
-  {
-    id: 6, cat: 'broadcast', num: '06',
-    tag: 'Title Sequence', title: 'ECHOES', year: '2022',
-    desc: 'Opening title sequence for a multi-part documentary series on African music and cultural identity.',
-    grad: 'linear-gradient(160deg,#04080f 0%,#091428 30%,#1e6fff 70%,#7aa8e8 100%)',
-  },
+
   {
     id: 7, cat: '3d', num: '07',
     tag: '3D · Broadcast', title: 'ORBIT NETWORK', year: '2022',
