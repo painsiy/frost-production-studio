@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+/* ─────────────────────────────────────────────────────────
+   HOOKS
+───────────────────────────────────────────────────────── */
 function useReveal() {
   const ref = useRef(null)
   useEffect(() => {
@@ -29,437 +32,568 @@ function useIsMobile() {
   return m
 }
 
-const CHAPTERS = ['hero','brief','challenge','work','videos','results','outcome']
-const CHAPTER_LABELS = ['Intro','01 · Brief','02 · Challenge','03 · The Work','04 · Videos','05 · Results','06 · Outcome']
-
-// Rideflow brand palette — deep green + amber accent on dark
-const RF = {
-  dark:   '#040d08',
-  mid:    '#071410',
-  green:  '#0f7a3c',
-  lime:   '#22c55e',
-  amber:  '#f59e0b',
-  muted:  '#4a6a55',
-  paper:  '#e8f5ee',
-  border: 'rgba(34,197,94,.07)',
+/* ─────────────────────────────────────────────────────────
+   BRAND PALETTE  — Rideflow Blue #2C4BFD
+───────────────────────────────────────────────────────── */
+const B = {
+  bg:      '#05080f',        // page background
+  surface: '#080f1c',        // cards / sections
+  blue:    '#2C4BFD',        // primary brand blue
+  blueHi:  '#5b78ff',        // lighter blue for text on dark
+  blueDim: 'rgba(44,75,253,0.09)',
+  blueGlow:'rgba(44,75,253,0.18)',
+  border:  'rgba(44,75,253,0.12)',
+  muted:   '#4a5a80',        // body text on dark
+  paper:   '#e8edf5',        // off-white text
 }
 
+/* ─────────────────────────────────────────────────────────
+   VIDEO DATA
+   ➜  Replace each youtubeId value with the real YouTube
+      video ID once you have the links.
+      e.g. https://youtube.com/watch?v=dQw4w9WgXcQ
+           → youtubeId: 'dQw4w9WgXcQ'
+───────────────────────────────────────────────────────── */
+const VIDEOS = [
+  {
+    num:       '01',
+    title:     'Main Brand Film',
+    type:      'Brand Film',
+    desc:      'The flagship video introducing Rideflow to the world. Anchors the brand narrative and communicates the core promise: one dashboard, total control over your entire logistics operation.',
+    youtubeId: 'PASTE_YOUTUBE_ID_1',
+    xUrl:      'https://x.com/RideflowHQ/status/2046248124822200492',
+    duration:  '~60s',
+    platform:  'Website · Social',
+  },
+  {
+    num:       '02',
+    title:     'Dashboard Workflow',
+    type:      'Product Demo',
+    desc:      'A deep-dive into the Rideflow dashboard — showing how operations managers track orders, assign drivers, and monitor fleet health in real time. Built for prospects evaluating the product.',
+    youtubeId: 'PASTE_YOUTUBE_ID_2',
+    xUrl:      'https://x.com/RideflowHQ/status/2024873718342651984',
+    duration:  '~90s',
+    platform:  'Website · LinkedIn',
+  },
+  {
+    num:       '03',
+    title:     'Video Edit — Social Cut',
+    type:      'Video Editing',
+    desc:      'A punchy, social-optimised cut built for autoplay performance. Tight editing rhythm, motion titles, and zero reliance on sound for the first 5 seconds. Made to stop thumbs mid-scroll.',
+    youtubeId: 'PASTE_YOUTUBE_ID_3',
+    xUrl:      'https://x.com/RideflowHQ/status/2049165403994075517',
+    duration:  '~30s',
+    platform:  'X / Twitter',
+  },
+  {
+    num:       '04',
+    title:     'Social Media Content',
+    type:      'Motion Design',
+    desc:      'Short-form awareness video for top-of-funnel distribution. Fast, visual, brand-led — designed to introduce Rideflow to audiences encountering the product for the first time.',
+    youtubeId: 'PASTE_YOUTUBE_ID_4',
+    xUrl:      'https://x.com/RideflowHQ/status/2049910818536386573',
+    duration:  '~20s',
+    platform:  'X · Instagram',
+  },
+]
+
+/* ─────────────────────────────────────────────────────────
+   YOUTUBE PLAYER  — plays inline; falls back to X link
+───────────────────────────────────────────────────────── */
+function VideoPlayer({ youtubeId, xUrl, title, isMobile }) {
+  const [playing, setPlaying] = useState(false)
+  const isReal = youtubeId && !youtubeId.startsWith('PASTE_')
+
+  // Active YouTube embed
+  if (isReal && playing) {
+    return (
+      <div style={{ position:'relative', width:'100%', aspectRatio:'16/9', background:'#000' }}>
+        <iframe
+          src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&color=white`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ position:'absolute', inset:0, width:'100%', height:'100%', border:'none' }}
+        />
+      </div>
+    )
+  }
+
+  // Thumbnail / placeholder
+  return (
+    <div
+      onClick={() => isReal && setPlaying(true)}
+      style={{
+        position:'relative', width:'100%', aspectRatio:'16/9', overflow:'hidden',
+        background:`linear-gradient(160deg, ${B.bg} 0%, ${B.surface} 40%, rgba(44,75,253,.25) 100%)`,
+        cursor: isReal ? 'pointer' : 'default',
+      }}
+    >
+      {/* Grid overlay */}
+      <div style={{ position:'absolute', inset:0, backgroundImage:`linear-gradient(${B.border} 1px,transparent 1px),linear-gradient(90deg,${B.border} 1px,transparent 1px)`, backgroundSize:'44px 44px' }}/>
+      {/* Radial glow */}
+      <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'55%', height:'75%', background:`radial-gradient(ellipse, ${B.blueGlow}, transparent 70%)` }}/>
+
+      {/* Rideflow logo centred in the thumbnail — vertical version */}
+      <img
+        src="/frost-production-studio/images/rideflow-logo-v.png"
+        alt="Rideflow"
+        style={{
+          position:'absolute', top:'50%', left:'50%',
+          transform:'translate(-50%,-60%)',
+          width: isMobile ? '28%' : '22%',
+          opacity: 0.18,
+          userSelect:'none', pointerEvents:'none',
+        }}
+      />
+
+      {/* Play button */}
+      <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'1rem' }}>
+        <div style={{
+          width: isMobile ? 52 : 68, height: isMobile ? 52 : 68, borderRadius:'50%',
+          border:`1.5px solid ${isReal ? 'rgba(232,237,245,.55)' : 'rgba(232,237,245,.2)'}`,
+          display:'flex', alignItems:'center', justifyContent:'center',
+          background: isReal ? 'rgba(44,75,253,.25)' : 'rgba(44,75,253,.08)',
+        }}>
+          <svg width={isMobile ? 20 : 26} viewBox="0 0 24 24" fill={isReal ? B.paper : B.muted} style={{ marginLeft:3 }}>
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+        <span style={{
+          fontFamily:'var(--font-ui)', fontSize: isMobile ? '0.7rem' : '0.78rem',
+          letterSpacing:'.18em', textTransform:'uppercase',
+          color: isReal ? 'rgba(232,237,245,.6)' : B.muted,
+        }}>
+          {isReal ? 'Click to Play' : 'YouTube link coming soon'}
+        </span>
+      </div>
+
+      {/* X fallback link */}
+      <a
+        href={xUrl} target="_blank" rel="noopener noreferrer"
+        onClick={e => e.stopPropagation()}
+        style={{
+          position:'absolute', bottom:'1rem', right:'1rem',
+          fontFamily:'var(--font-ui)', fontSize:'0.7rem', letterSpacing:'.1em',
+          textTransform:'uppercase', color: B.blueHi, textDecoration:'none',
+          background:'rgba(44,75,253,.15)', border:`1px solid rgba(44,75,253,.3)`,
+          padding:'.3rem .75rem',
+        }}
+      >
+        Watch on X ↗
+      </a>
+    </div>
+  )
+}
+
+/* ─────────────────────────────────────────────────────────
+   MAIN PAGE COMPONENT
+───────────────────────────────────────────────────────── */
 export default function ProjectRideflow() {
-  const page      = useReveal()
-  const isMobile  = useIsMobile()
-  const [active, setActive] = useState(0)
-  const [navShow, setNavShow] = useState(false)
+  const page     = useReveal()
+  const isMobile = useIsMobile()
 
-  useEffect(() => {
-    const heroEl = document.getElementById('rf-hero')
-    if (!heroEl) return
-    const hObs = new IntersectionObserver(([e]) => setNavShow(!e.isIntersecting), { threshold: 0.2 })
-    hObs.observe(heroEl)
-    const els = CHAPTERS.map(id => document.getElementById(`rf-${id}`)).filter(Boolean)
-    const aObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const i = CHAPTERS.indexOf(e.target.id.replace('rf-',''))
-          if (i >= 0) setActive(i)
-        }
-      })
-    }, { threshold: 0.35 })
-    els.forEach(el => aObs.observe(el))
-    return () => { hObs.disconnect(); aObs.disconnect() }
-  }, [])
-
-  const scrollTo = (id) => document.getElementById(`rf-${id}`)?.scrollIntoView({ behavior:'smooth' })
+  // Consistent section padding — tighter on mobile
+  const px = isMobile ? '1.5rem' : '3rem'
+  const py = isMobile ? '4.5rem' : '7rem'
+  const sectionBase = { padding:`${py} ${px}`, borderTop:`1px solid ${B.border}` }
 
   return (
-    <div ref={page} style={{ background: RF.dark, color: RF.paper }}>
+    <div ref={page} style={{ background: B.bg, color: B.paper }}>
 
-      {/* ── CHAPTER DOTS ── */}
-      {!isMobile && (
-        <div style={{ ...S.chapterNav, opacity: navShow ? 1 : 0, pointerEvents: navShow ? 'auto' : 'none' }}>
-          {CHAPTERS.map((id, i) => (
-            <div key={id} onClick={() => scrollTo(id)} title={CHAPTER_LABELS[i]} style={{
-              ...S.dot,
-              background: active===i ? RF.lime : 'rgba(34,197,94,.2)',
-              transform: active===i ? 'scale(1.5)' : 'scale(1)',
-              boxShadow: active===i ? `0 0 8px ${RF.lime}` : 'none',
-            }}/>
-          ))}
-        </div>
-      )}
-
-      {/* ── HERO ── */}
-      <section id="rf-hero" style={{
-        minHeight: '100vh', display:'grid', placeItems:'center',
-        position:'relative', overflow:'hidden', padding: isMobile ? '7rem 1.5rem 4rem' : '8rem 3rem 4rem',
+      {/* ══════════════════════════════════════════════
+          HERO
+      ══════════════════════════════════════════════ */}
+      <section style={{
+        minHeight:'100vh', display:'flex', flexDirection:'column',
+        justifyContent:'flex-end', position:'relative', overflow:'hidden',
+        padding: isMobile ? '7rem 1.5rem 3.5rem' : '8rem 3rem 4rem',
       }}>
-        {/* Background */}
-        <div style={{ position:'absolute', inset:0, background:`radial-gradient(ellipse 80% 60% at 55% 40%, rgba(15,122,60,.12), transparent 65%), radial-gradient(ellipse 40% 50% at 15% 75%, rgba(34,197,94,.06), transparent 60%), linear-gradient(160deg,${RF.dark} 0%,${RF.mid} 60%,${RF.dark} 100%)` }}/>
-        <div style={{ position:'absolute', inset:0, backgroundImage:`linear-gradient(rgba(34,197,94,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.03) 1px,transparent 1px)`, backgroundSize:'80px 80px' }}/>
+        {/* BG */}
+        <div style={{ position:'absolute', inset:0, background:`radial-gradient(ellipse 75% 55% at 60% 35%, rgba(44,75,253,.1), transparent 65%), linear-gradient(170deg,${B.bg} 0%,${B.surface} 60%,${B.bg} 100%)` }}/>
+        <div style={{ position:'absolute', inset:0, backgroundImage:`linear-gradient(${B.border} 1px,transparent 1px),linear-gradient(90deg,${B.border} 1px,transparent 1px)`, backgroundSize:'80px 80px' }}/>
 
-        {/* Big watermark */}
-        <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', fontFamily:'var(--font-display)', fontWeight:900, fontSize:'clamp(6rem,18vw,18rem)', color:'transparent', WebkitTextStroke:`1px rgba(34,197,94,.04)`, whiteSpace:'nowrap', userSelect:'none', pointerEvents:'none' }}>
-          RIDEFLOW
+        {/* Watermark logo — vertical, very faint */}
+        <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width: isMobile ? '70%' : '40%', maxWidth:480, opacity:.04, userSelect:'none', pointerEvents:'none' }}>
+          <img src="/frost-production-studio/images/rideflow-logo-v.png" alt="" style={{ width:'100%' }}/>
         </div>
 
-        <div style={{ position:'relative', zIndex:2, maxWidth:1200, width:'100%' }}>
-          {/* Meta row */}
-          <div style={{ ...S.heroMeta, animation:'fadeUp .6s .2s forwards', opacity:0 }}>
-            <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'4rem', lineHeight:1, color:'transparent', WebkitTextStroke:`1px rgba(34,197,94,.3)` }}>01</div>
-            <div style={{ borderLeft:`1px solid rgba(34,197,94,.2)`, paddingLeft:'1.5rem' }}>
-              <div style={{ fontFamily:'var(--font-ui)', fontSize: isMobile ? '0.78rem' : '0.88rem', letterSpacing:'.2em', textTransform:'uppercase', color: RF.lime, marginBottom:'.4rem' }}>
-                Motion Design · Brand Video · Social Content
-              </div>
-              <div style={{ fontFamily:'var(--font-ui)', fontSize: isMobile ? '0.72rem' : '0.82rem', color: RF.muted, letterSpacing:'.1em' }}>
-                2024 · Frost Production Studio · <a href="https://rideflow.org" target="_blank" rel="noopener noreferrer" style={{ color: RF.lime, textDecoration:'none' }}>rideflow.org</a>
-              </div>
-            </div>
-          </div>
+        {/* CONTENT — always single column, top to bottom */}
+        <div style={{ position:'relative', zIndex:2, display:'flex', flexDirection:'column', gap: isMobile ? '1.4rem' : '2rem' }}>
 
-          {/* Title */}
-          <h1 style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? 'clamp(3.5rem,14vw,6rem)' : 'clamp(4.5rem,13vw,12rem)', lineHeight:.88, letterSpacing:'-.02em', animation:'fadeUp .9s .35s forwards', opacity:0 }}>
-            RIDE<br/>
-            <em style={{ fontFamily:'var(--font-body)', fontStyle:'italic', color: RF.lime, fontWeight:300 }}>flow</em>
-          </h1>
-
-          {/* Tagline */}
-          <p style={{ marginTop:'2rem', maxWidth:'44ch', fontFamily:'var(--font-body)', fontSize: isMobile ? '1rem' : '1.1rem', lineHeight:1.85, color:'rgba(232,245,238,.6)', animation:'fadeUp .8s .55s forwards', opacity:0 }}>
-            A complete motion content package for Rideflow — a Lagos-based logistics operations platform. Brand films, dashboard walkthroughs, and social content that turned a complex SaaS product into something people actually wanted to watch.
+          {/* Breadcrumb */}
+          <p style={{ fontFamily:'var(--font-ui)', fontSize: isMobile ? '0.75rem' : '0.85rem', letterSpacing:'.15em', textTransform:'uppercase', color: B.muted, animation:'fadeUp .6s .1s forwards', opacity:0 }}>
+            <Link to="/" style={{ color:B.muted, textDecoration:'none' }}>Home</Link>
+            <span style={{ color:B.blue, margin:'0 .5rem' }}>→</span>
+            <Link to="/projects" style={{ color:B.muted, textDecoration:'none' }}>Projects</Link>
+            <span style={{ color:B.blue, margin:'0 .5rem' }}>→</span>
+            Rideflow
           </p>
 
-          {/* Stats */}
-          <div style={{ display:'flex', gap: isMobile ? '1.5rem' : '3rem', marginTop:'3.5rem', paddingTop:'2.5rem', borderTop:`1px solid ${RF.border}`, animation:'fadeUp .8s .7s forwards', opacity:0, flexWrap:'wrap' }}>
-            {[['4','Videos Produced'],['3','Content Formats'],['10+','Happy Clients'],['2024','Year']].map(([v,k]) => (
+          {/* Category pills */}
+          <div style={{ display:'flex', gap:'.5rem', flexWrap:'wrap', animation:'fadeUp .6s .2s forwards', opacity:0 }}>
+            {['SaaS Video', 'Motion Design', 'Video Editing'].map(t => (
+              <span key={t} style={{ padding:'.32rem .85rem', background:'rgba(44,75,253,.12)', border:`1px solid rgba(44,75,253,.28)`, fontFamily:'var(--font-ui)', fontSize: isMobile ? '0.72rem' : '0.8rem', letterSpacing:'.1em', textTransform:'uppercase', color: B.blueHi }}>
+                {t}
+              </span>
+            ))}
+          </div>
+
+          {/* Rideflow horizontal logo — the REAL wordmark, never overridden */}
+          <div style={{ animation:'fadeUp .9s .35s forwards', opacity:0 }}>
+            <img
+              src="/frost-production-studio/images/rideflow-logo-h.png"
+              alt="Rideflow"
+              style={{
+                height: isMobile ? 48 : 72,
+                width:'auto',
+                display:'block',
+                // logos have black background — remove it with mix-blend-mode
+                mixBlendMode:'screen',
+                filter:'brightness(1.05)',
+              }}
+            />
+          </div>
+
+          {/* Tagline */}
+          <p style={{ maxWidth: isMobile ? '100%' : '48ch', fontFamily:'var(--font-body)', fontSize: isMobile ? '1rem' : '1.1rem', lineHeight:1.85, color:'rgba(232,237,245,.6)', animation:'fadeUp .8s .5s forwards', opacity:0 }}>
+            A full suite of SaaS video content — brand film, dashboard walkthrough, video editing, and social motion design. Turning a powerful logistics platform into something people actually want to watch.
+          </p>
+
+          {/* Meta grid — 2 col on mobile, 4 col on desktop */}
+          <div style={{
+            display:'grid',
+            gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)',
+            gap:1, background: B.border,
+            animation:'fadeUp .8s .65s forwards', opacity:0,
+          }}>
+            {[['Client','Rideflow'],['Industry','Logistics SaaS'],['Scope','Video · Motion'],['Year','2026']].map(([k,v]) => (
+              <div key={k} style={{ background:B.bg, padding: isMobile ? '1rem' : '1.3rem 1.6rem' }}>
+                <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.15em', textTransform:'uppercase', color:B.muted, marginBottom:'.4rem' }}>{k}</div>
+                <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize: isMobile ? '0.9rem' : '1rem', color:B.paper }}>{v}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Stats row */}
+          <div style={{ display:'flex', gap: isMobile ? '1.5rem' : '3rem', paddingTop: isMobile ? '1.2rem' : '1.8rem', borderTop:`1px solid ${B.border}`, flexWrap:'wrap', animation:'fadeUp .8s .8s forwards', opacity:0 }}>
+            {[['4','Videos'],['SaaS','Industry'],['2026','Year'],['Motion + Edit','Scope']].map(([v,k]) => (
               <div key={k}>
-                <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? '2rem' : '2.4rem', lineHeight:1, color: RF.paper }}>{v}</div>
-                <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color: RF.muted, marginTop:'.3rem' }}>{k}</div>
+                <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? '1.7rem' : '2.3rem', lineHeight:1, color:B.paper }}>{v}</div>
+                <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.15em', textTransform:'uppercase', color:B.muted, marginTop:'.3rem' }}>{k}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Scroll hint */}
-        <div style={{ position:'absolute', bottom:'3rem', left:'50%', transform:'translateX(-50%)', display:'flex', flexDirection:'column', alignItems:'center', gap:'.8rem', animation:'fadeUp .8s 1.1s forwards', opacity:0 }}>
-          <div style={{ width:1, height:50, background:`linear-gradient(to bottom, ${RF.lime}, transparent)`, animation:'scrollArrow 2s 1.3s infinite' }}/>
-          <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.25em', textTransform:'uppercase', color: RF.muted }}>Scroll to explore</span>
+        <div style={{ position:'absolute', bottom:'2.5rem', left:'50%', transform:'translateX(-50%)', display:'flex', flexDirection:'column', alignItems:'center', gap:'.7rem', animation:'fadeUp .8s 1.1s forwards', opacity:0 }}>
+          <div style={{ width:1, height:44, background:`linear-gradient(to bottom,${B.blue},transparent)`, animation:'scrollArrow 2s 1.3s infinite' }}/>
+          <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.68rem', letterSpacing:'.22em', textTransform:'uppercase', color:B.muted }}>Scroll</span>
         </div>
       </section>
 
-      {/* ── 01 · BRIEF ── */}
-      <section id="rf-brief" style={sectionStyle(RF.dark)}>
-        <ChapterHeader num="01" label="The Brief" title={<>The<br/><em style={{ color: RF.lime }}>Brief</em></>} rf isMobile={isMobile} />
-        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:'4rem', alignItems:'start' }}>
-          <div className="reveal">
-            <div style={{ fontFamily:'var(--font-body)', fontSize:'1.05rem', lineHeight:2, color:'rgba(232,245,238,.65)' }}>
-              <p>Rideflow came to Frost Production Studio with a straightforward challenge — they had built an excellent logistics operations platform, but the product was complex, and no one could see its power from the outside. Potential clients didn't understand it. The team needed video content that could make a dense, feature-rich SaaS product feel immediate, human, and compelling.</p>
-              <p style={{ marginTop:'1.2rem' }}>The brief: create a suite of video content — from a flagship brand film to social-first clips — that could live across the website, X (Twitter), and LinkedIn. Every piece needed to communicate speed, clarity, and control: the three things Rideflow gives logistics operators that nothing else does.</p>
-            </div>
-            <blockquote style={{ fontFamily:'var(--font-body)', fontStyle:'italic', fontSize: isMobile ? '1.2rem' : '1.6rem', lineHeight:1.35, color: RF.paper, marginTop:'2rem', paddingLeft:'1.5rem', borderLeft:`2px solid ${RF.lime}` }}>
-              "Before Rideflow, managing orders and drivers felt chaotic."
-              <footer style={{ marginTop:'.8rem', fontFamily:'var(--font-ui)', fontSize:'0.82rem', color: RF.muted, fontStyle:'normal' }}>— Rideflow.org</footer>
-            </blockquote>
-          </div>
-          <div className="reveal d1">
-            {[
-              ['Client',        'Rideflow'],
-              ['Website',       'rideflow.org'],
-              ['Industry',      'Logistics SaaS / Transport Tech'],
-              ['Delivered by',  'Richard Amune — Frost Production Studio'],
-              ['Scope',         'Brand Film · Dashboard Demo · Social Content · Video Editing'],
-              ['Platform',      'Website · X (Twitter) · LinkedIn'],
-              ['Year',          '2024'],
-            ].map(([k,v]) => (
-              <div key={k} style={{ padding:'1.2rem 1.4rem', border:`1px solid ${RF.border}`, marginBottom:2, background:'rgba(34,197,94,.02)' }}>
-                <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.18em', textTransform:'uppercase', color: RF.muted, marginBottom:'.5rem' }}>{k}</div>
-                <div style={{ fontFamily:'var(--font-body)', fontSize:'0.98rem', color: RF.paper }}>
-                  {k === 'Website'
-                    ? <a href="https://rideflow.org" target="_blank" rel="noopener noreferrer" style={{ color: RF.lime, textDecoration:'none' }}>{v}</a>
-                    : v
-                  }
-                </div>
+      {/* ══════════════════════════════════════════════
+          01 · BRIEF
+      ══════════════════════════════════════════════ */}
+      <section id="rf-brief" style={{ ...sectionBase, background:B.bg }}>
+        <ChNum n="01" label="The Brief" isMobile={isMobile} />
+        <h2 className="reveal" style={H2(isMobile)}>
+          The <Em isMobile={isMobile}>Brief</Em>
+        </h2>
+
+        {/* Body text — full width, stacks naturally */}
+        <div className="reveal" style={{ fontFamily:'var(--font-body)', fontSize: isMobile ? '1rem' : '1.05rem', lineHeight:2, color:'rgba(232,237,245,.62)', marginBottom:'2.5rem', maxWidth:'66ch' }}>
+          <p>Rideflow — a SaaS logistics operations platform for managing riders, drivers, fleets, and delivery workflows — needed video content that made a dense, feature-rich product feel immediate and compelling to first-time viewers.</p>
+          <p style={{ marginTop:'1.2rem' }}>Four videos, four purposes: a brand film to anchor the narrative, a dashboard demo for prospects actively evaluating, a video edit for social performance, and a motion design piece for top-of-funnel awareness. Every second of every video had to justify its existence.</p>
+        </div>
+
+        {/* Pull quote */}
+        <div className="reveal" style={{ borderLeft:`3px solid ${B.blue}`, paddingLeft: isMobile ? '1.2rem' : '2rem', marginBottom:'3rem' }}>
+          <p style={{ fontFamily:'var(--font-body)', fontStyle:'italic', fontSize: isMobile ? '1.1rem' : '1.5rem', lineHeight:1.45, color:B.paper }}>
+            "Before Rideflow, managing orders and drivers felt chaotic."
+          </p>
+          <p style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', color:B.muted, marginTop:'.8rem', letterSpacing:'.06em' }}>— Rideflow.org</p>
+        </div>
+
+        {/* Project details — label left, value right. Single row on desktop, stacked on mobile */}
+        <div className="reveal" style={{ display:'flex', flexDirection:'column', gap:1 }}>
+          {[
+            ['Client',       'Rideflow'],
+            ['Website',      'rideflow.org', 'link'],
+            ['Industry',     'Logistics SaaS / Transport Tech'],
+            ['Delivered by', 'Richard Amune — Frost Production Studio'],
+            ['Scope',        'Brand Film · Dashboard Demo · Video Editing · Social Motion Design'],
+            ['Platform',     'Website · YouTube · LinkedIn · X (Twitter)'],
+            ['Year',         '2026'],
+          ].map(([k,v,type]) => (
+            <div key={k} style={{
+              display:'grid',
+              gridTemplateColumns: isMobile ? '1fr' : '180px 1fr',
+              gap: isMobile ? '.25rem' : '2rem',
+              padding: isMobile ? '.9rem 1.1rem' : '1.1rem 1.4rem',
+              background:'rgba(44,75,253,.03)', border:`1px solid ${B.border}`,
+            }}>
+              <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.76rem', letterSpacing:'.14em', textTransform:'uppercase', color:B.muted }}>{k}</div>
+              <div style={{ fontFamily:'var(--font-body)', fontSize: isMobile ? '0.95rem' : '1rem', color:B.paper, lineHeight:1.6 }}>
+                {type==='link'
+                  ? <a href="https://rideflow.org" target="_blank" rel="noopener noreferrer" style={{ color:B.blueHi, textDecoration:'none' }}>{v} ↗</a>
+                  : v
+                }
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 02 · CHALLENGE ── */}
-      <section id="rf-challenge" style={sectionStyle(RF.mid)}>
-        <ChapterHeader num="02" label="The Challenge" title={<>The<br/><em style={{ color: RF.amber }}>Challenge</em></>} rf isMobile={isMobile} />
-        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap:2, marginTop:'1rem' }}>
-          {[
-            ['📦', 'Complex Product', 'Rideflow manages drivers, fleets, orders, compliance documents, and analytics — all in one platform. Showing all of this without losing the viewer in 90 seconds required precise editorial choices.'],
-            ['🎯', 'Multiple Audiences', 'The content needed to speak to logistics managers, operations directors, and individual dispatch operators — each with different concerns, vocabulary, and viewing habits.'],
-            ['⚡', 'Speed & Clarity', "Logistics is a fast-moving industry. The videos had to feel as fast and efficient as Rideflow itself — no wasted frames, no padding. Every second had to earn its place."],
-          ].map(([icon, title, body]) => (
-            <div key={title} className="reveal" style={{ background:'rgba(34,197,94,.04)', border:`1px solid ${RF.border}`, padding:'2rem 1.8rem' }}>
-              <div style={{ fontSize:'2rem', marginBottom:'1rem' }}>{icon}</div>
-              <div style={{ fontFamily:'var(--font-body)', fontStyle:'italic', fontSize:'1.2rem', color: RF.paper, marginBottom:'.8rem' }}>{title}</div>
-              <div style={{ fontFamily:'var(--font-body)', fontSize:'0.95rem', lineHeight:1.85, color: RF.muted }}>{body}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Platform logos / social stats strip */}
-        <div className="reveal" style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)', gap:2, marginTop:'4rem', background:`rgba(34,197,94,.05)`, borderTop:`1px solid ${RF.border}` }}>
-          {[
-            ['rideflow.org', 'Website', '🌐'],
-            ['X / Twitter', 'Primary Platform', '𝕏'],
-            ['Logistics SaaS', 'Industry', '🏭'],
-            ['2024', 'Production Year', '📅'],
-          ].map(([v,k,icon]) => (
-            <div key={k} style={{ padding:'1.8rem 1.5rem', textAlign:'center', borderRight:`1px solid ${RF.border}` }}>
-              <div style={{ fontSize:'1.6rem', marginBottom:'.5rem' }}>{icon}</div>
-              <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:'1rem', color: RF.paper, marginBottom:'.3rem' }}>{v}</div>
-              <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.75rem', letterSpacing:'.15em', textTransform:'uppercase', color: RF.muted }}>{k}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── 03 · THE WORK ── */}
-      <section id="rf-work" style={sectionStyle(RF.dark)}>
-        <ChapterHeader num="03" label="The Approach" title={<>The<br/><em style={{ color: RF.lime }}>Work</em></>} rf isMobile={isMobile} />
+      {/* ══════════════════════════════════════════════
+          02 · CHALLENGE
+      ══════════════════════════════════════════════ */}
+      <section id="rf-challenge" style={{ ...sectionBase, background:B.surface }}>
+        <ChNum n="02" label="The Challenge" isMobile={isMobile} />
+        <h2 className="reveal" style={H2(isMobile)}>
+          The <Em isMobile={isMobile}>Challenge</Em>
+        </h2>
 
-        {/* Work process timeline */}
-        <div style={{ position:'relative', paddingLeft:'2rem', marginTop:'2rem', borderLeft:`1px solid ${RF.lime}` }}>
+        {/* Cards — 1 col on mobile */}
+        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap: isMobile ? '1px' : 2, marginBottom: isMobile ? '2.5rem' : '4rem' }}>
+          {[
+            ['📦','Complex SaaS Product','Rideflow manages drivers, fleets, orders, compliance docs, and analytics — all in one platform. Showing all of this without losing the viewer in under 90 seconds required surgical editorial decisions.'],
+            ['🎯','Multiple Audiences','The content needed to speak to logistics managers, operations directors, and dispatch operators — each with completely different concerns, vocabulary, and viewing habits.'],
+            ['⚡','Speed & Clarity','Logistics is a fast-moving industry. Every video had to feel as fast and efficient as Rideflow itself — no wasted frames, no padding. Every second earns its place.'],
+          ].map(([icon,title,body]) => (
+            <div key={title} className="reveal" style={{ background:'rgba(44,75,253,.05)', border:`1px solid ${B.border}`, padding: isMobile ? '1.8rem 1.5rem' : '2.2rem 2rem' }}>
+              <div style={{ fontSize: isMobile ? '1.8rem' : '2.2rem', marginBottom:'1rem' }}>{icon}</div>
+              <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize: isMobile ? '1.1rem' : '1.2rem', color:B.paper, marginBottom:'.8rem' }}>{title}</div>
+              <div style={{ fontFamily:'var(--font-body)', fontSize: isMobile ? '0.95rem' : '1rem', lineHeight:1.85, color:B.muted }}>{body}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Platform strip — 2 col on mobile, 4 col on desktop */}
+        <div className="reveal" style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)', gap:1, background:B.border }}>
+          {[['🌐','rideflow.org','Website'],['📺','YouTube','Primary Host'],['🏭','Logistics SaaS','Industry'],['📅','2026','Year']].map(([icon,v,k]) => (
+            <div key={k} style={{ background:B.surface, padding: isMobile ? '1.2rem 1rem' : '1.8rem 1.5rem', textAlign:'center' }}>
+              <div style={{ fontSize: isMobile ? '1.4rem' : '1.7rem', marginBottom:'.5rem' }}>{icon}</div>
+              <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize: isMobile ? '0.92rem' : '1rem', color:B.paper, marginBottom:'.3rem' }}>{v}</div>
+              <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.7rem', letterSpacing:'.12em', textTransform:'uppercase', color:B.muted }}>{k}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          03 · THE WORK
+      ══════════════════════════════════════════════ */}
+      <section id="rf-work" style={{ ...sectionBase, background:B.bg }}>
+        <ChNum n="03" label="The Approach" isMobile={isMobile} />
+        <h2 className="reveal" style={H2(isMobile)}>
+          The <Em isMobile={isMobile}>Work</Em>
+        </h2>
+
+        {/* Vertical timeline — always single column */}
+        <div style={{ position:'relative', paddingLeft: isMobile ? '1.5rem' : '2rem', borderLeft:`1px solid ${B.blue}` }}>
           {[
             {
-              phase: 'Phase 1 — Strategy & Scripting',
-              body: 'Before any footage or motion was touched, the content strategy was mapped. Four distinct content pillars were identified: brand awareness (the flagship film), product demonstration (the dashboard walkthrough), social proof (testimonials & quick wins), and engagement (short-form social content). Each video was scripted to a specific length and CTA.',
-              grads: [
-                `linear-gradient(135deg,${RF.dark} 0%,${RF.mid} 50%,rgba(15,122,60,.6) 100%)`,
-                `linear-gradient(135deg,${RF.mid} 0%,rgba(245,158,11,.2) 100%)`,
-              ],
-              labels: ['Strategy Map', 'Script Draft'],
+              phase:'Phase 1 — Strategy & Scripting',
+              body:'Before a frame was touched, the content strategy was mapped across four pillars: brand awareness, product demonstration, video editing, and motion design. Each video was scripted to a specific length, pacing, and call-to-action. The scripting phase determined the editing rhythm for everything that followed.',
             },
             {
-              phase: 'Phase 2 — Motion Design & Editing',
-              body: "The brand film was built around Rideflow's core promise: control. Every cut, transition, and motion graphic was timed to feel decisive — nothing floated, nothing lingered. The dashboard workflow video used screen recordings layered with motion annotations to make the UX immediately legible to a first-time viewer.",
-              grads: [
-                `linear-gradient(135deg,${RF.dark} 0%,rgba(15,122,60,.8) 100%)`,
-                `linear-gradient(135deg,${RF.mid} 0%,rgba(34,197,94,.5) 100%)`,
-                `linear-gradient(135deg,${RF.dark} 0%,rgba(245,158,11,.4) 100%)`,
-              ],
-              labels: ['Brand Film Edit', 'Dashboard Demo', 'Motion Graphics'],
-              cols: 3,
+              phase:'Phase 2 — Motion Design & Video Editing',
+              body:"The brand film was built around Rideflow's core promise: control. Every cut and transition was timed to feel decisive — nothing lingered. The dashboard demo layered screen recordings with motion annotations to make the UX immediately legible to a first-time viewer.",
             },
             {
-              phase: 'Phase 3 — Social Content Cuts',
-              body: 'From the flagship footage, short-form social cuts were crafted for X/Twitter. These were optimised for autoplay — meaning the first 3 seconds had to be visually arresting without sound. Captions, motion titles, and looping edits were added for the platform.',
-              grads: [
-                `linear-gradient(135deg,${RF.mid} 0%,rgba(34,197,94,.4) 100%)`,
-                `linear-gradient(135deg,${RF.dark} 0%,rgba(245,158,11,.5) 100%)`,
-              ],
-              labels: ['Social Cut A', 'Social Cut B'],
+              phase:'Phase 3 — Social Content Delivery',
+              body:'Social cuts were crafted for autoplay performance — the first 3 seconds had to be visually arresting without sound. Animated titles, captions, and looping motion edits were added. Each video was exported in the optimal resolution and format for its distribution platform.',
             },
           ].map((item, i) => (
-            <div key={i} className="reveal" style={{ position:'relative', paddingBottom:'4rem', paddingLeft:'3rem', paddingTop:'.4rem' }}>
-              {/* Timeline dot */}
-              <div style={{ position:'absolute', left:-4, top:'.4rem', width:9, height:9, borderRadius:'50%', background: RF.lime, boxShadow:`0 0 12px ${RF.lime}` }}/>
-              <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.2em', textTransform:'uppercase', color: RF.lime, marginBottom:'.6rem' }}>{item.phase}</div>
-              <div style={{ fontFamily:'var(--font-body)', fontSize:'0.98rem', lineHeight:1.9, color: RF.muted, maxWidth:'54ch' }}>{item.body}</div>
-              {/* Visual swatches */}
-              <div style={{ display:'grid', gridTemplateColumns:`repeat(${item.cols||2},1fr)`, gap:2, marginTop:'1.8rem' }}>
-                {item.grads.map((g, j) => (
-                  <div key={j} style={{ aspectRatio:'16/9', background:g, position:'relative' }}>
-                    <span style={{ position:'absolute', bottom:'.8rem', left:'.8rem', fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.12em', textTransform:'uppercase', color:'rgba(232,245,238,.35)', background:'rgba(0,0,0,.5)', padding:'.2rem .6rem' }}>{item.labels[j]}</span>
-                  </div>
-                ))}
-              </div>
+            <div key={i} className="reveal" style={{ position:'relative', paddingBottom: isMobile ? '2.5rem' : '3.5rem', paddingLeft: isMobile ? '1.5rem' : '2.5rem', paddingTop:'.3rem' }}>
+              <div style={{ position:'absolute', left: isMobile ? -6 : -5.5, top:'.4rem', width:10, height:10, borderRadius:'50%', background:B.blue, boxShadow:`0 0 14px ${B.blueGlow}` }}/>
+              <div style={{ fontFamily:'var(--font-ui)', fontSize: isMobile ? '0.76rem' : '0.84rem', letterSpacing:'.14em', textTransform:'uppercase', color:B.blue, marginBottom:'.7rem' }}>{item.phase}</div>
+              <div style={{ fontFamily:'var(--font-body)', fontSize: isMobile ? '0.98rem' : '1.05rem', lineHeight:1.9, color:B.muted }}>{item.body}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── 04 · VIDEOS ── */}
-      <section id="rf-videos" style={sectionStyle(RF.mid)}>
-        <ChapterHeader num="04" label="Watch the Work" title={<>The<br/><em style={{ color: RF.lime }}>Videos</em></>} rf isMobile={isMobile} />
-        <p className="reveal" style={{ fontFamily:'var(--font-body)', fontSize:'1.05rem', color: RF.muted, maxWidth:'52ch', marginBottom:'3rem', lineHeight:1.8 }}>
-          All four videos produced for Rideflow — click to watch on X (Twitter). Each one was crafted for a specific moment in the customer journey.
+      {/* ══════════════════════════════════════════════
+          04 · VIDEOS
+      ══════════════════════════════════════════════ */}
+      <section id="rf-videos" style={{ ...sectionBase, background:B.surface }}>
+        <ChNum n="04" label="Watch the Work" isMobile={isMobile} />
+        <h2 className="reveal" style={H2(isMobile)}>
+          The <Em isMobile={isMobile}>Videos</Em>
+        </h2>
+
+        <p className="reveal" style={{ fontFamily:'var(--font-body)', fontSize: isMobile ? '1rem' : '1.05rem', color:B.muted, maxWidth:'52ch', marginBottom: isMobile ? '2.5rem' : '3.5rem', lineHeight:1.8 }}>
+          All four videos produced for Rideflow, playable directly below. YouTube links will be added — for now, each card links to the original X post.
         </p>
 
-        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2,1fr)', gap:2 }}>
-          {[
-            {
-              num: '01',
-              title: 'Brand Film — Main',
-              desc: 'The flagship video introducing Rideflow to the world. Designed to live on the homepage and anchor the brand narrative. Shows the chaos of logistics without Rideflow — and the control that comes with it.',
-              url: 'https://x.com/RideflowHQ/status/2046248124822200492',
-              tag: 'Brand Film',
-              grad: `linear-gradient(160deg,${RF.dark} 0%,rgba(15,122,60,.6) 50%,${RF.lime} 100%)`,
-              duration: '~60s',
-              platform: 'Website · Social',
-            },
-            {
-              num: '02',
-              title: 'Dashboard Workflow Walkthrough',
-              desc: 'A deep-dive into the Rideflow dashboard — showing how operations managers track orders, assign drivers, and monitor fleet health in real time. Built for prospects who are evaluating the product.',
-              url: 'https://x.com/RideflowHQ/status/2024873718342651984',
-              tag: 'Product Demo',
-              grad: `linear-gradient(160deg,${RF.dark} 0%,rgba(245,158,11,.25) 50%,rgba(245,158,11,.5) 100%)`,
-              duration: '~90s',
-              platform: 'Website · LinkedIn',
-            },
-            {
-              num: '03',
-              title: 'Video Edit — Social Cut',
-              desc: 'A punchy, social-optimised cut built for autoplay performance on X. Tight editing rhythm, motion titles, and no reliance on sound for the first 5 seconds. Made to stop thumbs mid-scroll.',
-              url: 'https://x.com/RideflowHQ/status/2049165403994075517',
-              tag: 'Video Edit',
-              grad: `linear-gradient(160deg,${RF.dark} 0%,rgba(34,197,94,.3) 50%,rgba(15,122,60,.8) 100%)`,
-              duration: '~30s',
-              platform: 'X / Twitter',
-            },
-            {
-              num: '04',
-              title: 'Social Media Content',
-              desc: 'A short-form social video created specifically for top-of-funnel awareness. Fast, visual, and brand-led — designed to introduce Rideflow to new audiences who have never heard of the product.',
-              url: 'https://x.com/RideflowHQ/status/2049910818536386573',
-              tag: 'Social Content',
-              grad: `linear-gradient(160deg,${RF.mid} 0%,rgba(34,197,94,.2) 40%,rgba(245,158,11,.3) 100%)`,
-              duration: '~20s',
-              platform: 'X · Instagram',
-            },
-          ].map((v) => (
-            <div key={v.num} className="reveal" style={{ background:`rgba(34,197,94,.03)`, border:`1px solid ${RF.border}`, display:'flex', flexDirection:'column' }}>
-              {/* Thumbnail */}
-              <a href={v.url} target="_blank" rel="noopener noreferrer" style={{ display:'block', position:'relative', aspectRatio:'16/9', overflow:'hidden', textDecoration:'none' }}>
-                <div style={{ width:'100%', height:'100%', background: v.grad }}/>
-                {/* Play overlay */}
-                <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'1rem', background:'rgba(4,13,8,.3)', transition:'background .3s' }}>
-                  <div style={{ width:64, height:64, borderRadius:'50%', border:`1.5px solid rgba(232,245,238,.4)`, display:'flex', alignItems:'center', justifyContent:'center' }}>
-                    <svg width="24" viewBox="0 0 24 24" fill={RF.paper} style={{ marginLeft:3 }}><path d="M8 5v14l11-7z"/></svg>
-                  </div>
-                  <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.2em', textTransform:'uppercase', color:'rgba(232,245,238,.5)' }}>Watch on X →</span>
+        {/* Always single-column — video player on top, info below */}
+        <div style={{ display:'flex', flexDirection:'column', gap: isMobile ? '3rem' : '2px' }}>
+          {VIDEOS.map((v) => (
+            <div key={v.num} className="reveal" style={{ background:'rgba(44,75,253,.03)', border:`1px solid ${B.border}`, display:'flex', flexDirection:'column' }}>
+
+              {/* Player — always full width */}
+              <VideoPlayer
+                youtubeId={v.youtubeId}
+                xUrl={v.xUrl}
+                title={v.title}
+                isMobile={isMobile}
+              />
+
+              {/* Info — always below the video */}
+              <div style={{ padding: isMobile ? '1.5rem' : '2rem', display:'flex', flexDirection:'column', gap:'.8rem' }}>
+                {/* Type + number */}
+                <div style={{ display:'flex', alignItems:'center', gap:'.8rem' }}>
+                  <span style={{ fontFamily:'var(--font-ui)', fontSize: isMobile ? '0.72rem' : '0.78rem', letterSpacing:'.12em', textTransform:'uppercase', background:'rgba(44,75,253,.15)', border:`1px solid rgba(44,75,253,.3)`, color:B.blueHi, padding:'.3rem .75rem' }}>{v.type}</span>
+                  <span style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'2rem', color:'rgba(232,237,245,.06)', lineHeight:1 }}>{v.num}</span>
                 </div>
-                {/* Number */}
-                <div style={{ position:'absolute', top:'1rem', left:'1rem', fontFamily:'var(--font-display)', fontWeight:900, fontSize:'3rem', color:'rgba(232,245,238,.06)', lineHeight:1 }}>{v.num}</div>
-                {/* Tag */}
-                <div style={{ position:'absolute', top:'1rem', right:'1rem', background:`rgba(34,197,94,.2)`, border:`1px solid rgba(34,197,94,.3)`, padding:'.3rem .8rem', fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.12em', textTransform:'uppercase', color: RF.lime }}>
-                  {v.tag}
+
+                {/* Title */}
+                <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize: isMobile ? '1.2rem' : '1.4rem', color:B.paper }}>{v.title}</div>
+
+                {/* Description */}
+                <div style={{ fontFamily:'var(--font-body)', fontSize: isMobile ? '0.95rem' : '1.02rem', lineHeight:1.8, color:B.muted }}>{v.desc}</div>
+
+                {/* Meta */}
+                <div style={{ display:'flex', alignItems:'center', gap:'1.2rem', paddingTop:'.9rem', borderTop:`1px solid ${B.border}`, flexWrap:'wrap' }}>
+                  <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.08em', textTransform:'uppercase', color:B.muted }}>⏱ {v.duration}</span>
+                  <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.08em', textTransform:'uppercase', color:B.muted }}>📡 {v.platform}</span>
+                  <a href={v.xUrl} target="_blank" rel="noopener noreferrer" style={{ marginLeft:'auto', fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.08em', textTransform:'uppercase', color:B.blueHi, textDecoration:'none' }}>
+                    Watch on X ↗
+                  </a>
                 </div>
-              </a>
-              {/* Info */}
-              <div style={{ padding:'1.6rem', flex:1, display:'flex', flexDirection:'column', gap:'.6rem' }}>
-                <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:'1.15rem', color: RF.paper }}>{v.title}</div>
-                <div style={{ fontFamily:'var(--font-body)', fontSize:'0.95rem', lineHeight:1.75, color: RF.muted, flex:1 }}>{v.desc}</div>
-                <div style={{ display:'flex', gap:'1rem', marginTop:'.8rem', paddingTop:'.8rem', borderTop:`1px solid ${RF.border}` }}>
-                  <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.1em', textTransform:'uppercase', color: RF.muted }}>⏱ {v.duration}</span>
-                  <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.1em', textTransform:'uppercase', color: RF.muted }}>📡 {v.platform}</span>
-                </div>
-                <a href={v.url} target="_blank" rel="noopener noreferrer" style={{ marginTop:'.5rem', display:'inline-flex', alignItems:'center', gap:'.5rem', fontFamily:'var(--font-ui)', fontSize:'0.85rem', letterSpacing:'.1em', textTransform:'uppercase', color: RF.lime, textDecoration:'none' }}>
-                  Watch on X ↗
-                </a>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── 05 · RESULTS ── */}
-      <section id="rf-results" style={sectionStyle(RF.dark)}>
-        <ChapterHeader num="05" label="Deliverables" title={<>What Was<br/><em style={{ color: RF.lime }}>Delivered</em></>} rf isMobile={isMobile} />
-        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(3,1fr)', gap:2, marginTop:'1rem' }}>
+      {/* ══════════════════════════════════════════════
+          05 · DELIVERABLES
+      ══════════════════════════════════════════════ */}
+      <section id="rf-results" style={{ ...sectionBase, background:B.bg }}>
+        <ChNum n="05" label="Deliverables" isMobile={isMobile} />
+        <h2 className="reveal" style={H2(isMobile)}>
+          What Was <Em isMobile={isMobile}>Delivered</Em>
+        </h2>
+
+        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap: isMobile ? '1px' : 2 }}>
           {[
-            { icon:'🎬', title:'Brand Film', desc:'Flagship 60s video for homepage and social distribution' },
-            { icon:'🖥', title:'Dashboard Demo', desc:'90s product walkthrough showing the full Rideflow workflow' },
-            { icon:'✂️', title:'Video Edit', desc:'Social-first cut with motion titles and captions for X' },
-            { icon:'📱', title:'Social Content', desc:'Short-form awareness video for top-of-funnel distribution' },
-            { icon:'🎨', title:'Motion Graphics', desc:'Custom animated lower thirds, titles, and transition elements' },
-            { icon:'🎯', title:'Platform Optimisation', desc:'Each video formatted and exported for its specific platform' },
+            { icon:'🎬', title:'Brand Film',            desc:'Flagship video for homepage and social distribution' },
+            { icon:'🖥',  title:'Dashboard Demo',        desc:'Product walkthrough showing the full Rideflow workflow' },
+            { icon:'✂️', title:'Video Editing',          desc:'Social-first cut with motion titles and captions' },
+            { icon:'📱', title:'Social Motion Design',   desc:'Short-form awareness content for top-of-funnel reach' },
+            { icon:'🎨', title:'Motion Graphics',        desc:'Animated lower thirds, titles, and transition elements' },
+            { icon:'🎯', title:'Platform Optimisation',  desc:'Every video formatted for its specific platform' },
           ].map(d => (
-            <div key={d.title} className="reveal" style={{ padding:'2rem 1.8rem', border:`1px solid ${RF.border}`, background:`rgba(34,197,94,.02)` }}>
-              <div style={{ fontSize:'2rem', marginBottom:'1rem' }}>{d.icon}</div>
-              <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:'1.1rem', color: RF.paper, marginBottom:'.6rem' }}>{d.title}</div>
-              <div style={{ fontFamily:'var(--font-body)', fontSize:'0.92rem', lineHeight:1.75, color: RF.muted }}>{d.desc}</div>
+            <div key={d.title} className="reveal" style={{ padding: isMobile ? '1.6rem 1.4rem' : '2rem 1.8rem', border:`1px solid ${B.border}`, background:'rgba(44,75,253,.02)' }}>
+              <div style={{ fontSize: isMobile ? '1.8rem' : '2rem', marginBottom:'1rem' }}>{d.icon}</div>
+              <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize: isMobile ? '1rem' : '1.1rem', color:B.paper, marginBottom:'.6rem' }}>{d.title}</div>
+              <div style={{ fontFamily:'var(--font-body)', fontSize: isMobile ? '0.92rem' : '0.98rem', lineHeight:1.75, color:B.muted }}>{d.desc}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── 06 · OUTCOME ── */}
-      <section id="rf-outcome" style={{ ...sectionStyle(RF.dark), background: RF.green, color:'#fff' }}>
-        <ChapterHeader num="06" label="Results & Impact" title={<>The<br/><em style={{ color:'rgba(255,255,255,.5)' }}>Outcome</em></>} rf light isMobile={isMobile} />
+      {/* ══════════════════════════════════════════════
+          06 · OUTCOME
+      ══════════════════════════════════════════════ */}
+      <section id="rf-outcome" style={{ ...sectionBase, background:B.blue, color:'#fff' }}>
+        <ChNum n="06" label="Results & Impact" isMobile={isMobile} light />
+        <h2 className="reveal" style={{ ...H2(isMobile), color:'#fff' }}>
+          The <span style={{ fontFamily:'var(--font-body)', fontStyle:'italic', fontWeight:300, color:'rgba(255,255,255,.5)' }}>Outcome</span>
+        </h2>
 
-        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)', gap:2, marginBottom:'4rem', background:'rgba(0,0,0,.15)' }}>
-          {[
-            ['4', 'Videos Produced', 'Full suite delivered'],
-            ['10+', 'Happy Clients', 'Already onboard at launch'],
-            ['95%', 'On-Time Delivery', 'Their platform benchmark'],
-            ['2024', 'Live & Growing', 'rideflow.org'],
-          ].map(([v,k,c]) => (
-            <div key={k} style={{ padding:'2.5rem 2rem', textAlign:'center', background: RF.green }}>
-              <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? '3rem' : '4rem', lineHeight:1, color:'#fff' }}>{v}</div>
-              <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.18em', textTransform:'uppercase', color:'rgba(255,255,255,.55)', marginTop:'.5rem' }}>{k}</div>
-              <div style={{ fontFamily:'var(--font-body)', fontSize:'0.85rem', color:'rgba(255,255,255,.4)', marginTop:'.4rem' }}>{c}</div>
+        {/* Stats — 2 col mobile, 4 col desktop */}
+        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)', gap:1, background:'rgba(255,255,255,.15)', marginBottom: isMobile ? '3rem' : '4rem' }}>
+          {[['4','Videos Produced','Full suite delivered'],['10+','Happy Clients','Onboard at launch'],['2026','Production Year','rideflow.org'],['SaaS','Industry','Logistics Tech']].map(([v,k,c]) => (
+            <div key={k} style={{ background:B.blue, padding: isMobile ? '1.8rem 1rem' : '2.5rem 2rem', textAlign:'center' }}>
+              <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? '2.2rem' : '3.6rem', lineHeight:1, color:'#fff' }}>{v}</div>
+              <div style={{ fontFamily:'var(--font-ui)', fontSize: isMobile ? '0.7rem' : '0.8rem', letterSpacing:'.14em', textTransform:'uppercase', color:'rgba(255,255,255,.55)', marginTop:'.5rem' }}>{k}</div>
+              <div style={{ fontFamily:'var(--font-body)', fontSize: isMobile ? '0.8rem' : '0.88rem', color:'rgba(255,255,255,.38)', marginTop:'.35rem' }}>{c}</div>
             </div>
           ))}
         </div>
 
-        <div style={{ maxWidth:700, margin:'0 auto', textAlign:'center', padding: isMobile ? '0' : '0 2rem' }}>
-          <p style={{ fontFamily:'var(--font-body)', fontStyle:'italic', fontSize: isMobile ? '1.2rem' : 'clamp(1.3rem,2.5vw,1.8rem)', lineHeight:1.5, color:'#fff', marginBottom:'1.8rem' }}>
+        {/* Quote + logo */}
+        <div style={{ maxWidth:660, textAlign:'center', margin:'0 auto', padding: isMobile ? '0' : '0 2rem' }}>
+          {/* Rideflow horizontal logo — white via screen blend */}
+          <div style={{ display:'flex', justifyContent:'center', marginBottom:'2rem' }}>
+            <img
+              src="/frost-production-studio/images/rideflow-logo-h.png"
+              alt="Rideflow"
+              style={{ height: isMobile ? 36 : 44, width:'auto', mixBlendMode:'screen', filter:'brightness(1.1) saturate(0) invert(1)', opacity:.55 }}
+            />
+          </div>
+
+          <p style={{ fontFamily:'var(--font-body)', fontStyle:'italic', fontSize: isMobile ? '1.05rem' : 'clamp(1.2rem,2.5vw,1.65rem)', lineHeight:1.55, color:'#fff', marginBottom:'1.5rem' }}>
             "Before Rideflow, managing orders and drivers felt chaotic. Now every part of our operation is in one place."
           </p>
-          <p style={{ fontFamily:'var(--font-ui)', fontSize:'0.85rem', letterSpacing:'.18em', textTransform:'uppercase', color:'rgba(255,255,255,.5)' }}>
-            — Rideflow.org
-          </p>
+          <p style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.15em', textTransform:'uppercase', color:'rgba(255,255,255,.5)' }}>— Rideflow.org</p>
           <div style={{ marginTop:'2rem' }}>
-            <a href="https://rideflow.org" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display:'inline-flex', background:'rgba(255,255,255,.15)', border:'1px solid rgba(255,255,255,.3)', borderRadius:0 }}>
+            <a href="https://rideflow.org" target="_blank" rel="noopener noreferrer" style={{ display:'inline-flex', alignItems:'center', gap:'.6rem', padding:'.85rem 1.8rem', background:'rgba(255,255,255,.12)', border:'1px solid rgba(255,255,255,.3)', fontFamily:'var(--font-ui)', fontSize:'0.88rem', letterSpacing:'.1em', textTransform:'uppercase', color:'#fff', textDecoration:'none' }}>
               Visit Rideflow.org ↗
             </a>
           </div>
         </div>
       </section>
 
-      {/* ── NEXT PROJECT ── */}
-      <section style={{ ...sectionStyle(RF.dark), textAlign:'center', position:'relative', overflow:'hidden' }}>
-        <div style={{ position:'absolute', inset:0, background:`radial-gradient(ellipse 60% 50% at 50% 50%, rgba(34,197,94,.04), transparent 70%)` }}/>
-        <p className="reveal" style={{ fontFamily:'var(--font-ui)', fontSize:'0.85rem', letterSpacing:'.25em', textTransform:'uppercase', color: RF.muted, marginBottom:'1.5rem' }}>You've reached the end</p>
-        <h2 className="reveal" style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? 'clamp(3rem,12vw,6rem)' : 'clamp(3.5rem,9vw,8rem)', lineHeight:.9, letterSpacing:'-.02em', marginBottom:'1rem' }}>
-          Next<br/><span style={{ color: RF.lime }}>Project</span>
+      {/* ══════════════════════════════════════════════
+          NEXT PROJECT
+      ══════════════════════════════════════════════ */}
+      <section style={{ ...sectionBase, background:B.bg, textAlign:'center', position:'relative', overflow:'hidden' }}>
+        <div style={{ position:'absolute', inset:0, background:`radial-gradient(ellipse 60% 50% at 50% 50%, rgba(44,75,253,.05), transparent 70%)` }}/>
+        <p className="reveal" style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.22em', textTransform:'uppercase', color:B.muted, marginBottom:'1.5rem', position:'relative', zIndex:2 }}>You've reached the end</p>
+        <h2 className="reveal" style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? 'clamp(2.5rem,11vw,5rem)' : 'clamp(3.5rem,9vw,8rem)', lineHeight:.9, letterSpacing:'-.02em', marginBottom:'1rem', position:'relative', zIndex:2 }}>
+          Next<br/><span style={{ color:B.blue }}>Project</span>
         </h2>
-        <p className="reveal" style={{ fontFamily:'var(--font-body)', fontSize:'1rem', color: RF.muted, marginBottom:'3rem' }}>See the Nova Collective brand identity →</p>
-        <div className="reveal" style={{ display:'flex', justifyContent:'center', gap:'1rem', flexWrap:'wrap' }}>
-          <Link to="/project-nova" className="btn-primary" style={{ background: RF.green }}>Nova Collective →</Link>
-          <Link to="/projects" className="btn-outline" style={{ borderColor:`rgba(34,197,94,.25)`, color: RF.lime }}>All Projects</Link>
-          <Link to="/contact" className="btn-outline" style={{ borderColor:'rgba(232,237,245,.18)', color: RF.paper }}>Start a Project</Link>
+        <p className="reveal" style={{ fontFamily:'var(--font-body)', fontSize: isMobile ? '0.95rem' : '1rem', color:B.muted, marginBottom:'2.5rem', position:'relative', zIndex:2 }}>
+          See the Nova Collective brand identity case study
+        </p>
+        <div className="reveal" style={{ display:'flex', justifyContent:'center', gap:'1rem', flexWrap:'wrap', position:'relative', zIndex:2 }}>
+          <Link to="/project-nova" className="btn-primary">Nova Collective →</Link>
+          <Link to="/projects" className="btn-outline" style={{ borderColor:`rgba(44,75,253,.3)`, color:B.blueHi }}>All Projects</Link>
+          <Link to="/contact" className="btn-outline">Start a Project</Link>
         </div>
       </section>
+
     </div>
   )
 }
 
-/* ── Chapter header sub-component ── */
-function ChapterHeader({ num, label, title, rf, light, isMobile }) {
-  const lime = '#22c55e'
-  const accent = light ? 'rgba(255,255,255,.4)' : lime
+/* ─────────────────────────────────────────────────────────
+   SUB-COMPONENTS
+───────────────────────────────────────────────────────── */
+
+// Chapter number + label
+function ChNum({ n, label, isMobile, light }) {
   return (
-    <div style={{ display:'flex', alignItems:'flex-start', gap: isMobile ? '1rem' : '3rem', marginBottom:'5rem', flexDirection: isMobile ? 'column' : 'row' }}>
-      <div className="reveal" style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? '4rem' : '6rem', lineHeight:.85, color:'transparent', WebkitTextStroke:`1px rgba(34,197,94,.08)`, flexShrink:0, userSelect:'none' }}>
-        {num}
-      </div>
-      <div>
-        <div className="reveal d1" style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.25em', textTransform:'uppercase', color: accent, display:'flex', alignItems:'center', gap:'.8rem', marginBottom:'.8rem' }}>
-          <span style={{ display:'block', width:20, height:1, background: accent }}/>
-          {label}
-        </div>
-        <h2 className="reveal d2" style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? 'clamp(2.5rem,9vw,4.5rem)' : 'clamp(3rem,7vw,6rem)', lineHeight:.9, letterSpacing:'-.01em', color: light ? '#fff' : '#e8f5ee' }}>
-          {title}
-        </h2>
-      </div>
+    <div className="reveal" style={{ display:'flex', alignItems:'center', gap:'.8rem', marginBottom: isMobile ? '1.5rem' : '2rem' }}>
+      <span style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.15rem', color:'transparent', WebkitTextStroke:`1px rgba(44,75,253,.35)`, lineHeight:1 }}>{n}</span>
+      <span style={{ display:'block', width:18, height:1, background: light ? 'rgba(255,255,255,.3)' : '#2C4BFD' }}/>
+      <span style={{ fontFamily:'var(--font-ui)', fontSize: isMobile ? '0.76rem' : '0.84rem', letterSpacing:'.18em', textTransform:'uppercase', color: light ? 'rgba(255,255,255,.55)' : '#5b78ff' }}>{label}</span>
     </div>
   )
 }
 
-const sectionStyle = (bg) => ({
-  padding:'7rem 3rem',
-  borderTop:'1px solid rgba(34,197,94,.07)',
-  background: bg,
-  '@media(maxWidth:768px)': { padding:'5rem 1.5rem' },
-})
+// Italic accent word in headings
+function Em({ children, isMobile }) {
+  return (
+    <em style={{ fontFamily:'var(--font-body)', fontStyle:'italic', fontWeight:300, color:'#2C4BFD' }}>
+      {children}
+    </em>
+  )
+}
 
-const S = {
-  chapterNav: { position:'fixed', right:'2.5rem', top:'50%', zIndex:400, transform:'translateY(-50%)', display:'flex', flexDirection:'column', gap:'.8rem', transition:'opacity .4s' },
-  dot: { width:6, height:6, borderRadius:'50%', cursor:'none', transition:'all .3s' },
-  heroMeta: { display:'flex', alignItems:'center', gap:'2rem', marginBottom:'2.5rem' },
+// H2 style helper
+function H2(isMobile) {
+  return {
+    fontFamily:'var(--font-display)', fontWeight:900,
+    fontSize: isMobile ? 'clamp(2.4rem,10vw,4rem)' : 'clamp(3rem,7vw,6rem)',
+    lineHeight:.9, letterSpacing:'-.01em',
+    marginBottom: isMobile ? '2rem' : '3rem',
+    color:'#e8edf5',
+  }
 }
