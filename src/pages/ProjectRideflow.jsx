@@ -200,16 +200,17 @@ export default function ProjectRideflow() {
         justifyContent:'flex-end', position:'relative', overflow:'hidden',
         padding: isMobile ? '5.5rem 1.5rem 3rem' : '6rem 3rem 4rem',
       }}>
-        {/* BG */}
-        <div style={{ position:'absolute', inset:0, background:`radial-gradient(ellipse 75% 55% at 60% 35%, rgba(44,75,253,.1), transparent 65%), linear-gradient(170deg,${B.bg} 0%,${B.surface} 60%,${B.bg} 100%)` }}/>
-        {/* Grid removed — thumbnail image shows fully */}
-
-        {/* Hero bg — thumbnail image very faint + blurred */}
-        <div style={{ position:'absolute', inset:0, backgroundImage:"url('/frost-production-studio/images/rideflow-thumbnail.png')", backgroundSize:'cover', backgroundPosition:'center', opacity:.18, userSelect:'none', pointerEvents:'none' }}/>
-        {/* Watermark wordmark over the faint image */}
-        <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width: isMobile ? '70%' : '40%', maxWidth:460, opacity:.07, userSelect:'none', pointerEvents:'none' }}>
-          <img src="/frost-production-studio/images/rideflow-logo-h.png" alt="" style={{ width:'100%', mixBlendMode:'screen' }}/>
-        </div>
+        {/* Full-bleed clean background image */}
+        <div style={{
+          position:'absolute', inset:0,
+          backgroundImage:"url('/frost-production-studio/images/rideflow-thumbnail.png')",
+          backgroundSize:'cover', backgroundPosition:'center center',
+        }}/>
+        {/* Single clean gradient overlay — dark at bottom for text, subtle at top */}
+        <div style={{
+          position:'absolute', inset:0,
+          background:'linear-gradient(to top, rgba(4,8,15,0.96) 0%, rgba(4,8,15,0.55) 45%, rgba(4,8,15,0.25) 100%)',
+        }}/>
 
         {/* CONTENT — always single column, top to bottom */}
         <div style={{ position:'relative', zIndex:2, display:'flex', flexDirection:'column', gap: isMobile ? '1.4rem' : '2rem' }}>
@@ -238,18 +239,17 @@ export default function ProjectRideflow() {
               src="/frost-production-studio/images/rideflow-logo-h.png"
               alt="Rideflow"
               style={{
-                height: isMobile ? 48 : 72,
+                height: isMobile ? 44 : 66,
                 width:'auto',
                 display:'block',
-                // logos have black background — remove it with mix-blend-mode
                 mixBlendMode:'screen',
-                filter:'brightness(1.05)',
+                filter:'brightness(1.1) saturate(1.1)',
               }}
             />
           </div>
 
           {/* Tagline */}
-          <p style={{ maxWidth: isMobile ? '100%' : '48ch', fontFamily:'var(--font-body)', fontSize: isMobile ? '1rem' : '1.1rem', lineHeight:1.85, color:'rgba(232,237,245,.6)', animation:'fadeUp .8s .5s forwards', opacity:0 }}>
+          <p style={{ maxWidth: isMobile ? '100%' : '48ch', fontFamily:'var(--font-body)', fontSize: isMobile ? '1rem' : '1.1rem', lineHeight:1.85, color:'rgba(232,237,245,.85)', animation:'fadeUp .8s .5s forwards', opacity:0 }}>
             A full suite of SaaS video content — brand film, dashboard walkthrough, video editing, and social motion design. Turning a powerful logistics platform into something people actually want to watch.
           </p>
 
@@ -261,7 +261,7 @@ export default function ProjectRideflow() {
             animation:'fadeUp .8s .65s forwards', opacity:0,
           }}>
             {[['Client','Rideflow'],['Industry','Logistics SaaS'],['Scope','Video · Motion'],['Year','2026']].map(([k,v]) => (
-              <div key={k} style={{ background:B.bg, padding: isMobile ? '1rem' : '1.3rem 1.6rem' }}>
+              <div key={k} style={{ background:'rgba(4,8,15,0.75)', backdropFilter:'blur(8px)', padding: isMobile ? '1rem' : '1.3rem 1.6rem' }}>
                 <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.15em', textTransform:'uppercase', color:B.muted, marginBottom:'.4rem' }}>{k}</div>
                 <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize: isMobile ? '0.9rem' : '1rem', color:'#ffffff' }}>{v}</div>
               </div>
@@ -272,7 +272,7 @@ export default function ProjectRideflow() {
           <div style={{ display:'flex', gap: isMobile ? '1.5rem' : '3rem', paddingTop: isMobile ? '1.2rem' : '1.8rem', borderTop:`1px solid ${B.border}`, flexWrap:'wrap', animation:'fadeUp .8s .8s forwards', opacity:0 }}>
             {[['4','Videos'],['SaaS','Industry'],['2026','Year'],['Motion + Edit','Scope']].map(([v,k]) => (
               <div key={k}>
-                <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? '1.7rem' : '2.3rem', lineHeight:1, color:B.paper }}>{v}</div>
+                <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? '1.7rem' : '2.3rem', lineHeight:1, color:'#ffffff' }}>{v}</div>
                 <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.15em', textTransform:'uppercase', color:B.muted, marginTop:'.3rem' }}>{k}</div>
               </div>
             ))}
