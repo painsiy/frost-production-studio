@@ -129,13 +129,14 @@ function VideoPlayer({ youtubeId, xUrl, title, isMobile }) {
         cursor: isReal ? 'pointer' : 'default',
       }}
     >
-      {/* Grid overlay */}
-      <div style={{ position:'absolute', inset:0, backgroundImage:`linear-gradient(${B.border} 1px,transparent 1px),linear-gradient(90deg,${B.border} 1px,transparent 1px)`, backgroundSize:'44px 44px' }}/>
-      {/* Radial glow */}
-      <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'55%', height:'75%', background:`radial-gradient(ellipse, ${B.blueGlow}, transparent 70%)` }}/>
-
-      {/* Subtle dark overlay so play button stays readable over the photo */}
-      <div style={{ position:'absolute', inset:0, background:'rgba(4,8,15,.45)' }}/>
+      {/* Real Rideflow thumbnail image — fills the whole card */}
+      <img
+        src="/frost-production-studio/images/rideflow-thumbnail.png"
+        alt="Rideflow"
+        style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center' }}
+      />
+      {/* Dark overlay so play button and text stay readable */}
+      <div style={{ position:'absolute', inset:0, background:'rgba(4,8,15,.52)' }}/>
 
       {/* Play button */}
       <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'1rem' }}>
@@ -197,14 +198,14 @@ export default function ProjectRideflow() {
       <section style={{
         minHeight:'100vh', display:'flex', flexDirection:'column',
         justifyContent:'flex-end', position:'relative', overflow:'hidden',
-        padding: isMobile ? '7rem 1.5rem 3.5rem' : '8rem 3rem 4rem',
+        padding: isMobile ? '5.5rem 1.5rem 3rem' : '6rem 3rem 4rem',
       }}>
         {/* BG */}
         <div style={{ position:'absolute', inset:0, background:`radial-gradient(ellipse 75% 55% at 60% 35%, rgba(44,75,253,.1), transparent 65%), linear-gradient(170deg,${B.bg} 0%,${B.surface} 60%,${B.bg} 100%)` }}/>
-        <div style={{ position:'absolute', inset:0, backgroundImage:`linear-gradient(${B.border} 1px,transparent 1px),linear-gradient(90deg,${B.border} 1px,transparent 1px)`, backgroundSize:'80px 80px' }}/>
+        {/* Grid removed — thumbnail image shows fully */}
 
         {/* Hero bg — thumbnail image very faint + blurred */}
-        <div style={{ position:'absolute', inset:0, backgroundImage:"url('/frost-production-studio/images/rideflow-thumbnail.png')", backgroundSize:'cover', backgroundPosition:'center', opacity:.06, filter:'blur(2px)', transform:'scale(1.05)', userSelect:'none', pointerEvents:'none' }}/>
+        <div style={{ position:'absolute', inset:0, backgroundImage:"url('/frost-production-studio/images/rideflow-thumbnail.png')", backgroundSize:'cover', backgroundPosition:'center', opacity:.18, userSelect:'none', pointerEvents:'none' }}/>
         {/* Watermark wordmark over the faint image */}
         <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width: isMobile ? '70%' : '40%', maxWidth:460, opacity:.07, userSelect:'none', pointerEvents:'none' }}>
           <img src="/frost-production-studio/images/rideflow-logo-h.png" alt="" style={{ width:'100%', mixBlendMode:'screen' }}/>
@@ -262,7 +263,7 @@ export default function ProjectRideflow() {
             {[['Client','Rideflow'],['Industry','Logistics SaaS'],['Scope','Video · Motion'],['Year','2026']].map(([k,v]) => (
               <div key={k} style={{ background:B.bg, padding: isMobile ? '1rem' : '1.3rem 1.6rem' }}>
                 <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.15em', textTransform:'uppercase', color:B.muted, marginBottom:'.4rem' }}>{k}</div>
-                <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize: isMobile ? '0.9rem' : '1rem', color:B.paper }}>{v}</div>
+                <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize: isMobile ? '0.9rem' : '1rem', color:'#ffffff' }}>{v}</div>
               </div>
             ))}
           </div>
@@ -314,7 +315,7 @@ export default function ProjectRideflow() {
             ['Client',       'Rideflow'],
             ['Website',      'rideflow.org', 'link'],
             ['Industry',     'Logistics SaaS / Transport Tech'],
-            ['Delivered by', 'Richard Amune — Frost Production Studio'],
+            ['Delivered by', 'Richard Amune'],
             ['Scope',        'Brand Film · Dashboard Demo · Video Editing · Social Motion Design'],
             ['Platform',     'Website · YouTube · LinkedIn · X (Twitter)'],
             ['Year',         '2026'],

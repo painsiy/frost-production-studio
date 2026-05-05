@@ -91,7 +91,7 @@ export default function ProjectNova() {
             <div style={S.heroIndex}>01</div>
             <div style={{ borderLeft:'1px solid rgba(30,111,255,.2)', paddingLeft:'1.5rem' }}>
               <div style={S.heroCategory}>Brand Identity · Motion</div>
-              <div style={S.heroDate}>Jan — Mar 2024 · 12 weeks · Frost Production Studio</div>
+              <div style={S.heroDate}>Jan — Mar 2024 · 12 weeks · Richard Amune</div>
             </div>
           </div>
           <h1 style={{ ...S.heroTitle, animation:'fadeUp .9s .35s forwards', opacity:0 }}>
@@ -100,7 +100,7 @@ export default function ProjectNova() {
           </h1>
           <p style={{ ...S.heroTagline, animation:'fadeUp .8s .55s forwards', opacity:0 }}>
             A complete motion identity system for a Berlin-based creative studio — from first brief to final delivery.
-            The full story of how an abstract idea became a living brand in motion, crafted by Richard Amune at Frost Production Studio.
+            The full story of how an abstract idea became a living brand in motion, crafted by Richard Amune.
           </p>
           <div style={{ ...S.heroStats, animation:'fadeUp .8s .7s forwards', opacity:0 }}>
             {[['12','Weeks'],['340+','Frames'],['6','Revisions'],['28','Deliverables']].map(([v,k]) => (
@@ -123,7 +123,7 @@ export default function ProjectNova() {
         <div style={S.briefLayout}>
           <div className="reveal">
             <div style={S.briefBody}>
-              <p>Nova Collective came to Frost Production Studio in December 2023 with a clear problem: they were a world-class creative studio with a name that promised something special, but their brand moved like it was standing still. Static logos, generic typefaces, motion that felt borrowed rather than owned.</p>
+              <p>Nova Collective came to Richard Amune in December 2023 with a clear problem: they were a world-class creative studio with a name that promised something special, but their brand moved like it was standing still. Static logos, generic typefaces, motion that felt borrowed rather than owned.</p>
               <p style={{marginTop:'1.2rem'}}>The ask was ambitious — build a complete motion identity system that could scale from a 3-second logo sting to a 90-second brand film. Everything needed to feel like it was in conversation: the easing curves, the typographic rhythm, the way colour appeared and disappeared.</p>
               <p style={{marginTop:'1.2rem'}}>They had just rebranded their visual identity and needed motion to be the primary expression of the new direction — not a translation of it, but the real thing.</p>
             </div>
@@ -136,7 +136,7 @@ export default function ProjectNova() {
             {[
               ['Client','Nova Collective GmbH'],
               ['Studio Location','Berlin-Mitte, Germany'],
-              ['Delivered by','Richard Amune — Frost Production Studio'],
+              ['Delivered by','Richard Amune'],
               ['Tools','After Effects · Cinema 4D · DaVinci Resolve'],
               ['Budget Range','€ 38,000 — €45,000'],
               ['Timeline','12 weeks · Jan 8 — Mar 28, 2024'],
@@ -229,7 +229,7 @@ export default function ProjectNova() {
         <ChapterHeader num="04" label="In the Studio" title={<>Develop<em>ment</em></>} />
         <div style={S.timeline}>
           {[
-            { week:'Week 1–2', title:'Building the Motion Grammar', body:'Before touching the logo, Richard built the rules at Frost Production Studio: a custom easing curve library, a timing grid based on 24fps and multiples of 8 frames, a set of atomic behaviours — appear, exit, transition, persist.', grads:['linear-gradient(135deg,#04080f 0%,#1e6fff 100%)','linear-gradient(135deg,#060c18 0%,#7aa8e8 100%)'], labels:['Easing Curve Library','Timing Grid — 24fps'], cols:2 },
+            { week:'Week 1–2', title:'Building the Motion Grammar', body:'Before touching the logo, Richard built the rules: a custom easing curve library, a timing grid based on 24fps and multiples of 8 frames, a set of atomic behaviours — appear, exit, transition, persist.', grads:['linear-gradient(135deg,#04080f 0%,#1e6fff 100%)','linear-gradient(135deg,#060c18 0%,#7aa8e8 100%)'], labels:['Easing Curve Library','Timing Grid — 24fps'], cols:2 },
             { week:'Week 3–4', title:'Logo Animation — First Pass', body:'Seven distinct logo animation approaches built at full fidelity — not storyboards, not animatics. Real motion, real timing. The goal: find which one felt like it had always existed.', strip:true },
             { week:'Week 5–7', title:'System Expansion', body:'With the logo animation approved, the grammar expanded into every corner of the system. Lower thirds, transitions, social templates — each traced back to the core rules.', grads:['linear-gradient(135deg,#030810 0%,#4a90d9 100%)','linear-gradient(135deg,#06040f 0%,#6644cc 100%)','linear-gradient(135deg,#040c1a 0%,#0044cc 100%)'], labels:['Lower Third System','Transition Library','Social Templates'], cols:3 },
             { week:'Week 8–9', title:'Brand Film Production', body:'A 90-second brand film shot on location in Berlin, composited with the motion system by Richard Amune. The film had to work without sound — a discipline that made every motion choice more intentional.', grads:['linear-gradient(160deg,#04080f 0%,#091428 30%,#1e6fff 70%,#7aa8e8 100%)','linear-gradient(135deg,#04080f 0%,#1e6fff 100%)'], labels:['Brand Film — Wide Cut','Composite Layer'], cols:2 },
@@ -326,7 +326,7 @@ export default function ProjectNova() {
           ))}
         </div>
         <div className="reveal d2" style={S.testimony}>
-          <p style={S.testimonyQuote}>"Working with Richard at Frost Production Studio was the closest thing to having a sixth sense in the room. He understood what we wanted before we could articulate it — and then made something better."</p>
+          <p style={S.testimonyQuote}>"Working with Richard was the closest thing to having a sixth sense in the room. He understood what we wanted before we could articulate it — and then made something better."</p>
           <p style={S.testimonyAttr}>Léa Sørensen <span style={{color:'rgba(255,255,255,.28)',margin:'0 .8rem'}}>·</span> Creative Director <span style={{color:'rgba(255,255,255,.28)',margin:'0 .8rem'}}>·</span> Nova Collective</p>
         </div>
       </section>

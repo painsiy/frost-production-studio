@@ -43,7 +43,7 @@ const TOOLS = [
 ]
 
 const EXP = [
-  { years:'2020 — Now',  role:'Founder & Motion Director', co:'Frost Production Studio — Lagos',       desc:'Running a motion design studio specialising in brand identity and broadcast. Built a portfolio spanning global brands, broadcasters, and filmmakers across Africa, Europe and North America.', tags:['Creative Direction','Client Relations','Studio Management'], award:'Motionographer 2024' },
+  { years:'2020 — Now',  role:'Founder & Motion Director', co:'Richard Amune — Lagos',       desc:'Running a motion design studio specialising in brand identity and broadcast. Built a portfolio spanning global brands, broadcasters, and filmmakers across Africa, Europe and North America.', tags:['Creative Direction','Client Relations','Studio Management'], award:'Motionographer 2024' },
   { years:'2017 — 2020', role:'Senior Motion Designer',    co:'Meridian Creative — London',            desc:"Led motion across broadcast and brand projects for Nike, BBC, and Channel 4. Oversaw the studio's transition to real-time 3D pipelines using Cinema 4D and Unreal Engine.",               tags:['Team Leadership','Real-time 3D','Brand Motion'],             award:'D&AD Silver 2019' },
   { years:'2015 — 2017', role:'Motion Designer',           co:'Kinetic Studio — Lagos',               desc:"Designed broadcast packages and title sequences for Nigerian and pan-African broadcasters. Developed the studio's internal motion language for kinetic typography.",                      tags:['Broadcast','Typography','Editing'],                          award:'' },
   { years:'2011 — 2015', role:'BSc Communication Design',  co:'University of Lagos — First Class',    desc:'Graduated top of class with a focus on visual communication and motion graphics. Final project won the West Africa Design Award for Innovation in Motion.',                              tags:['Motion Graphics','Film','Research'],                         award:'Design Award' },
@@ -63,7 +63,7 @@ export default function About() {
       <div style={{
         minHeight: isMobile ? '45vh' : '55vh',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-        padding: isMobile ? '6rem 1.5rem 3rem' : '8rem 3rem 4rem',
+        padding: isMobile ? '5.5rem 1.5rem 2.5rem' : '6rem 3rem 3.5rem',
         position: 'relative', overflow: 'hidden',
         borderBottom: '1px solid var(--border)',
       }}>
@@ -120,8 +120,8 @@ export default function About() {
             Motion designer with an obsession for craft.
           </h2>
           <div className="reveal d1" style={S.colBody}>
-            <p>I'm Richard Amune, founder of Frost Production Studio. My career began in broadcast design, developing a deep respect for the constraints of motion — the discipline of creating something that has to work at 24 frames a second, under any lighting condition, on any screen.</p>
-            <p style={{ marginTop:'1.2rem' }}>Today, Frost Production Studio works at the intersection of brand identity, visual storytelling, and emerging technology. Our clients range from global brands launching new campaigns to independent filmmakers who need their titles to feel as important as the film itself.</p>
+            <p>I'm Richard Amune, an independent motion designer based in Lagos. My career began in broadcast design, developing a deep respect for the constraints of motion — the discipline of creating something that has to work at 24 frames a second, under any lighting condition, on any screen.</p>
+            <p style={{ marginTop:'1.2rem' }}>Today, Richard works at the intersection of brand identity, visual storytelling, and emerging technology. Our clients range from global brands launching new campaigns to independent filmmakers who need their titles to feel as important as the film itself.</p>
             <p style={{ marginTop:'1.2rem' }}>Every project begins with one question: what does this need to feel like? The motion is always in service of that answer.</p>
           </div>
 
@@ -161,7 +161,7 @@ export default function About() {
             letterSpacing: '.2em', textTransform: 'uppercase',
             color: 'rgba(255,255,255,.6)',
           }}>
-            — Richard Amune, Frost Production Studio
+            — Richard Amune
           </p>
         </div>
       </div>
@@ -248,7 +248,7 @@ export default function About() {
               fontSize: '1rem', lineHeight: 1.85,
               color: 'rgba(255,255,255,.65)',
             }}>
-              Software evolves. Craft doesn't. These are the tools Frost Production Studio reaches for to bring ideas to life.
+              Software evolves. Craft doesn't. These are the tools Richard reaches for to bring ideas to life.
             </p>
           </div>
 

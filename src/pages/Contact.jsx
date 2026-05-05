@@ -62,7 +62,7 @@ export default function Contact() {
         </svg>
       </div>
       <h2 style={S.successTitle}>Message<br/><span style={{color:'var(--accent)'}}>Sent.</span></h2>
-      <p style={S.successSub}>Thank you for reaching out to Frost Production Studio. Richard will review your brief and respond within 24 hours.</p>
+      <p style={S.successSub}>Thank you for reaching out. Richard Richard will review your brief and respond within 24 hours.</p>
       <Link to="/" style={S.successBack}>← Back to Home</Link>
     </div>
   )
@@ -78,7 +78,7 @@ export default function Contact() {
       {/* ── LEFT PANEL ── */}
       <div style={{
         ...S.left,
-        padding: isMobile ? '7rem 1.5rem 3rem' : '9rem 4rem 4rem',
+        padding: isMobile ? '5.5rem 1.5rem 3rem' : '6.5rem 4rem 4rem',
       }}>
         <div style={S.leftBgText}>SAY<br/>HELLO</div>
 
@@ -96,7 +96,7 @@ export default function Contact() {
             </em>
           </h1>
           <p style={{...S.leftSub, animation:'fadeUp .8s .6s forwards', opacity:0}}>
-            Have a project in mind? Frost Production Studio is ready to hear it. Fill in the brief and Richard will get back to you within 24 hours.
+            Have a project in mind? Richard is ready to hear it. Fill in the brief and Richard will get back to you within 24 hours.
           </p>
         </div>
 
@@ -128,7 +128,7 @@ export default function Contact() {
       {/* ── RIGHT PANEL — FORM ── */}
       <div style={{
         ...S.right,
-        padding: isMobile ? '3rem 1.5rem 4rem' : '9rem 4rem 4rem',
+        padding: isMobile ? '3rem 1.5rem 4rem' : '6.5rem 4rem 4rem',
       }}>
         <p style={{...S.formEyebrow, animation:'fadeUp .6s .5s forwards', opacity:0}}>
           Send a Brief

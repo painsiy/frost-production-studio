@@ -21,9 +21,9 @@ function useReveal() {
 
 const MARQUEE_ITEMS = [
   'Title Sequences','Brand Identity','Visual Effects','Broadcast Design',
-  '3D Animation','Frost Production Studio','UI / UX Motion','After Effects',
+  '3D Animation','Richard Amune','UI / UX Motion','After Effects',
   'Title Sequences','Brand Identity','Visual Effects','Broadcast Design',
-  '3D Animation','Frost Production Studio','UI / UX Motion','After Effects',
+  '3D Animation','Richard Amune','UI / UX Motion','After Effects',
 ]
 
 const PROJECTS = [
@@ -59,7 +59,7 @@ export default function Home() {
       <section style={H.section}>
         <div style={H.bg}/><div style={H.grid}/>
         <div style={H.bgText}>FROST</div>
-        <div style={{paddingTop:'8rem'}}/>
+        <div style={{paddingTop:'5.5rem'}}/>
 
         <div style={H.center}>
           <p style={{...H.eyebrow, animation:'fadeUp .8s .2s forwards', opacity:0}}>
@@ -70,7 +70,7 @@ export default function Home() {
             <em style={{fontFamily:'var(--font-body)',fontStyle:'italic',color:'var(--accent)',fontWeight:300}}>Amune</em>
           </h1>
           <p style={{...H.sub, animation:'fadeUp .9s .65s forwards', opacity:0}}>
-            Frost Production Studio — crafting kinetic narratives that move brands forward.
+            Richard Amune — crafting kinetic narratives that move brands forward.
             From concept to final frame, every pixel in motion.
           </p>
           <div style={{...H.ctaGroup, animation:'fadeUp .9s .8s forwards', opacity:0}}>
@@ -240,7 +240,7 @@ export default function Home() {
           <p style={A.quote}>"Motion is the language that turns brand stories into felt experiences."</p>
         </div>
         <div className="reveal d1">
-          <p style={A.body}>Based in Lagos and available worldwide, Frost Production Studio crafts motion identities for brands that refuse to stand still. Every project begins with one question: what does this need to feel like?</p>
+          <p style={A.body}>Based in Lagos and available worldwide, Richard crafts motion identities for brands that refuse to stand still. Every project begins with one question: what does this need to feel like?</p>
           <div style={A.tools}>
             {['After Effects','Cinema 4D','DaVinci Resolve','Houdini','Figma','Blender'].map(t=>(
               <span key={t} style={A.toolTag}>{t}</span>

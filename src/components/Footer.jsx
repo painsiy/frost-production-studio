@@ -10,7 +10,7 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <Link to="/" className="footer-logo">Frost Production Studio</Link>
+      <Link to="/" className="footer-logo">Richard Amune</Link>
       <div className="footer-socials">
         {socials.map(s => (
           <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">
@@ -19,7 +19,7 @@ export default function Footer() {
         ))}
       </div>
       <span style={{ fontFamily: 'var(--font-ui)' }}>
-        © 2025 Richard Amune / Frost Production Studio
+        © 2025 Richard Amune
       </span>
     </footer>
   )

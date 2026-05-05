@@ -21,9 +21,9 @@ export default function AdminLogin() {
       <div style={S.card}>
         {/* Logo */}
         <div style={S.logoRow}>
-          <div style={S.logoMark}>FP</div>
+          <div style={S.logoMark}>RA</div>
           <div>
-            <div style={S.logoName}>Frost Production Studio</div>
+            <div style={S.logoName}>Richard Amune</div>
             <div style={S.logoSub}>Admin Dashboard</div>
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function AdminLogin() {
         </form>
 
         <p style={S.footer}>
-          © 2025 Frost Production Studio · Richard Amune
+          © 2025 Richard Amune · Richard Amune
         </p>
       </div>
     </div>

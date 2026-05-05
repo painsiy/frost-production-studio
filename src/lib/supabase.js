@@ -12,7 +12,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 export const DEFAULT_CONTENT = {
   // ── GLOBAL ──
   global: {
-    brandName:    'Frost Production Studio',
+    brandName:    'Richard Amune',
     designerName: 'Richard Amune',
     email:        'hello@frostproductionstudio.com',
     location:     'Lagos, Nigeria',
@@ -28,7 +28,7 @@ export const DEFAULT_CONTENT = {
     heroEyebrow:  'Motion Designer & Visual Storyteller',
     heroTitle:    'RICHARD',
     heroSubtitle: 'Amune',
-    heroBody:     'Frost Production Studio — crafting kinetic narratives that move brands forward. From concept to final frame, every pixel in motion.',
+    heroBody:     'Richard Amune — crafting kinetic narratives that move brands forward. From concept to final frame, every pixel in motion.',
     statsYears:   '8+',
     statsProjects:'200+',
     statsClients: '60+',
@@ -36,17 +36,17 @@ export const DEFAULT_CONTENT = {
     showreelFeatured: 'Brand Identity · Broadcast · 3D · UI Motion',
     showreelTools:    'After Effects · Cinema 4D · DaVinci',
     aboutQuote:   '"Motion is the language that turns brand stories into felt experiences."',
-    aboutBody:    'Based in Lagos and available worldwide, Frost Production Studio crafts motion identities for brands that refuse to stand still. Every project begins with one question: what does this need to feel like?',
+    aboutBody:    'Based in Lagos and available worldwide, Richard crafts motion identities for brands that refuse to stand still. Every project begins with one question: what does this need to feel like?',
     ctaTitle:     "Let's",
     ctaAccent:    'Work',
-    marqueeItems: ['Title Sequences','Brand Identity','Visual Effects','Broadcast Design','3D Animation','Frost Production Studio','UI / UX Motion','After Effects'],
+    marqueeItems: ['Title Sequences','Brand Identity','Visual Effects','Broadcast Design','3D Animation','Richard Amune','UI / UX Motion','After Effects'],
   },
 
   // ── ABOUT PAGE ──
   about: {
     headline:     'Motion designer with an obsession for craft.',
-    bio1:         "I'm Richard Amune, founder of Frost Production Studio. My career began in broadcast design, developing a deep respect for the constraints of motion — the discipline of creating something that has to work at 24 frames a second, under any lighting condition, on any screen.",
-    bio2:         'Today, Frost Production Studio works at the intersection of brand identity, visual storytelling, and emerging technology. Our clients range from global brands launching new campaigns to independent filmmakers.',
+    bio1:         "I'm Richard Amune, an independent motion designer based in Lagos. My career began in broadcast design, developing a deep respect for the constraints of motion — the discipline of creating something that has to work at 24 frames a second, under any lighting condition, on any screen.",
+    bio2:         'Today, Richard works at the intersection of brand identity, visual storytelling, and emerging technology. Our clients range from global brands launching new campaigns to independent filmmakers.',
     bio3:         'Every project begins with one question: what does this need to feel like? The motion is always in service of that answer.',
     basedIn:      'Lagos, Nigeria — available worldwide',
     quote:        "Motion is not decoration. It is the moment a brand stops existing on a page and starts living in someone's memory.",
@@ -72,12 +72,12 @@ export const DEFAULT_CONTENT = {
   nova: {
     client:      'Nova Collective GmbH',
     location:    'Berlin-Mitte, Germany',
-    deliveredBy: 'Richard Amune — Frost Production Studio',
+    deliveredBy: 'Richard Amune',
     tools:       'After Effects · Cinema 4D · DaVinci Resolve',
     budget:      '€ 38,000 — €45,000',
     timeline:    '12 weeks · Jan 8 — Mar 28, 2024',
     format:      'ProRes 4444, H.264 web, After Effects source files',
-    brief:       "Nova Collective came to Frost Production Studio in December 2023 with a clear problem: they were a world-class creative studio with a name that promised something special, but their brand moved like it was standing still.",
+    brief:       "Nova Collective came to Richard Amune in December 2023 with a clear problem: they were a world-class creative studio with a name that promised something special, but their brand moved like it was standing still.",
     brief2:      'The ask was ambitious — build a complete motion identity system that could scale from a 3-second logo sting to a 90-second brand film. Everything needed to feel like it was in conversation: the easing curves, the typographic rhythm, the way colour appeared and disappeared.',
     quote:       "We want people to watch our logo and feel something they can't quite name.",
     quoteAuthor: 'Léa Sørensen, Creative Director, Nova Collective',
@@ -85,7 +85,7 @@ export const DEFAULT_CONTENT = {
     outcome2:    '+68%', outcome2Label: 'Inbound Inquiries',
     outcome3:    '3',    outcome3Label: 'Industry Awards',
     outcome4:    '28',   outcome4Label: 'Deliverables',
-    testimony:   'Working with Richard at Frost Production Studio was the closest thing to having a sixth sense in the room. He understood what we wanted before we could articulate it — and then made something better.',
+    testimony:   'Working with Richard was the closest thing to having a sixth sense in the room. He understood what we wanted before we could articulate it — and then made something better.',
     testimonyBy: 'Léa Sørensen · Creative Director · Nova Collective',
   },
 }
