@@ -160,13 +160,13 @@ export default function Contact() {
           {/* Project type + timeline — stacks on mobile */}
           <div style={{display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:2}}>
             <Field label="Project Type *" error={errors.ptype}>
-              <select value={form.ptype} onChange={e=>update('ptype',e.target.value)} style={S.input}>
+              <select value={form.ptype} onChange={e=>update('ptype',e.target.value)} style={S.selectEl}>
                 <option value="" disabled>Select type</option>
                 {PROJECT_TYPES.map(t=><option key={t}>{t}</option>)}
               </select>
             </Field>
             <Field label="Timeline" indent={!isMobile}>
-              <select value={form.timeline} onChange={e=>update('timeline',e.target.value)} style={S.input}>
+              <select value={form.timeline} onChange={e=>update('timeline',e.target.value)} style={S.selectEl}>
                 <option value="" disabled>Select timeline</option>
                 {TIMELINES.map(t=><option key={t}>{t}</option>)}
               </select>
@@ -352,6 +352,15 @@ const S = {
     fontFamily:'var(--font-body)', fontWeight:300,
     fontSize:'1rem', color:'var(--paper)',
     padding:'.3rem 0 1rem',
+  },
+  selectEl: {
+    width:'100%', border:'none', outline:'none',
+    fontFamily:'var(--font-body)', fontWeight:300, fontSize:'1rem',
+    padding:'.5rem .2rem 1rem',
+    backgroundColor:'#000000',
+    color:'#ffffff',
+    cursor:'pointer',
+    appearance:'auto', WebkitAppearance:'auto',
   },
   budgetDisplay: {
     fontFamily:'var(--font-display)', fontWeight:900,

@@ -22,9 +22,10 @@ function useReveal() {
 const ALL_PROJECTS = [
   {
     id: 0, cat: 'branding', num: '01',
-    tag: 'Motion Design · Brand Video', title: 'RIDEFLOW', year: '2024',
+    tag: 'Motion Design · Brand Video', title: 'Rideflow', year: '2026',
     desc: 'A complete motion content package — brand film, dashboard walkthrough, and social content for a Lagos-based logistics SaaS platform.',
-    grad: 'linear-gradient(160deg,#040d08 0%,#071410 40%,#0f7a3c 80%,#22c55e 100%)',
+    grad: 'linear-gradient(160deg,#04080f 0%,#0d1526 50%,#2C4BFD 100%)',
+    imageUrl: '/frost-production-studio/images/rideflow-thumbnail.png',
     link: '/project-rideflow', featured: true, visible: true,
   },
   {
@@ -155,7 +156,14 @@ export default function Projects() {
               onMouseLeave={() => setHovered(null)}
             >
               {/* Thumbnail */}
-              <div style={{ ...S.thumb, background: p.grad }}>
+              <div style={{ ...S.thumb, background: p.grad, position:'relative', overflow:'hidden' }}>
+                {p.imageUrl && (
+                  <img
+                    src={p.imageUrl}
+                    alt={p.title}
+                    style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center', transition:'transform .5s cubic-bezier(.22,.68,0,1.2)' }}
+                  />
+                )}
                 {/* Overlay — uses CSS class for hover */}
                 <div className="proj-overlay">
                   <span style={S.overlayTag}>{p.tag}</span>

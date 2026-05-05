@@ -1,26 +1,8 @@
 import { useEffect, useRef } from 'react'
-
-const styles = {
-  dot: {
-    position: 'fixed', top: 0, left: 0, zIndex: 9999,
-    width: 10, height: 10,
-    background: 'var(--accent)', borderRadius: '50%',
-    pointerEvents: 'none',
-    transform: 'translate(-50%, -50%)',
-    transition: 'width 0.18s, height 0.18s',
-    mixBlendMode: 'difference',
-  },
-  ring: {
-    position: 'fixed', top: 0, left: 0, zIndex: 9998,
-    width: 38, height: 38,
-    border: '1px solid rgba(30,111,255,0.5)', borderRadius: '50%',
-    pointerEvents: 'none',
-    transform: 'translate(-50%, -50%)',
-    mixBlendMode: 'difference',
-  },
-}
+import { useTheme } from '../context/ThemeContext'
 
 export default function Cursor() {
+  const { cursor } = useTheme()
   const dotRef  = useRef(null)
   const ringRef = useRef(null)
   const pos     = useRef({ mx: 0, my: 0, rx: 0, ry: 0 })
@@ -31,7 +13,6 @@ export default function Cursor() {
       pos.current.my = e.clientY
     }
     window.addEventListener('mousemove', onMove)
-
     let raf
     const animate = () => {
       const { mx, my } = pos.current
@@ -48,17 +29,42 @@ export default function Cursor() {
       raf = requestAnimationFrame(animate)
     }
     raf = requestAnimationFrame(animate)
-
     return () => {
       window.removeEventListener('mousemove', onMove)
       cancelAnimationFrame(raf)
     }
   }, [])
 
+  // When cursor is set to 'normal', hide these elements entirely
+  if (cursor === 'normal') return null
+
   return (
     <>
-      <div ref={dotRef}  style={styles.dot}  />
-      <div ref={ringRef} style={styles.ring} />
+      <div
+        id="fps-cursor"
+        ref={dotRef}
+        style={{
+          position:'fixed', top:0, left:0, zIndex:9999,
+          width:10, height:10,
+          background:'var(--accent)', borderRadius:'50%',
+          pointerEvents:'none',
+          transform:'translate(-50%,-50%)',
+          transition:'width .18s, height .18s',
+          mixBlendMode:'difference',
+        }}
+      />
+      <div
+        id="fps-cursor-ring"
+        ref={ringRef}
+        style={{
+          position:'fixed', top:0, left:0, zIndex:9998,
+          width:38, height:38,
+          border:'1px solid rgba(30,111,255,0.5)', borderRadius:'50%',
+          pointerEvents:'none',
+          transform:'translate(-50%,-50%)',
+          mixBlendMode:'difference',
+        }}
+      />
     </>
   )
 }

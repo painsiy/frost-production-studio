@@ -134,18 +134,8 @@ function VideoPlayer({ youtubeId, xUrl, title, isMobile }) {
       {/* Radial glow */}
       <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'55%', height:'75%', background:`radial-gradient(ellipse, ${B.blueGlow}, transparent 70%)` }}/>
 
-      {/* Rideflow logo centred in the thumbnail — vertical version */}
-      <img
-        src="/frost-production-studio/images/rideflow-logo-v.png"
-        alt="Rideflow"
-        style={{
-          position:'absolute', top:'50%', left:'50%',
-          transform:'translate(-50%,-60%)',
-          width: isMobile ? '28%' : '22%',
-          opacity: 0.18,
-          userSelect:'none', pointerEvents:'none',
-        }}
-      />
+      {/* Subtle dark overlay so play button stays readable over the photo */}
+      <div style={{ position:'absolute', inset:0, background:'rgba(4,8,15,.45)' }}/>
 
       {/* Play button */}
       <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'1rem' }}>
@@ -213,9 +203,11 @@ export default function ProjectRideflow() {
         <div style={{ position:'absolute', inset:0, background:`radial-gradient(ellipse 75% 55% at 60% 35%, rgba(44,75,253,.1), transparent 65%), linear-gradient(170deg,${B.bg} 0%,${B.surface} 60%,${B.bg} 100%)` }}/>
         <div style={{ position:'absolute', inset:0, backgroundImage:`linear-gradient(${B.border} 1px,transparent 1px),linear-gradient(90deg,${B.border} 1px,transparent 1px)`, backgroundSize:'80px 80px' }}/>
 
-        {/* Watermark logo — vertical, very faint */}
-        <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width: isMobile ? '70%' : '40%', maxWidth:480, opacity:.04, userSelect:'none', pointerEvents:'none' }}>
-          <img src="/frost-production-studio/images/rideflow-logo-v.png" alt="" style={{ width:'100%' }}/>
+        {/* Hero bg — thumbnail image very faint + blurred */}
+        <div style={{ position:'absolute', inset:0, backgroundImage:"url('/frost-production-studio/images/rideflow-thumbnail.png')", backgroundSize:'cover', backgroundPosition:'center', opacity:.06, filter:'blur(2px)', transform:'scale(1.05)', userSelect:'none', pointerEvents:'none' }}/>
+        {/* Watermark wordmark over the faint image */}
+        <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width: isMobile ? '70%' : '40%', maxWidth:460, opacity:.07, userSelect:'none', pointerEvents:'none' }}>
+          <img src="/frost-production-studio/images/rideflow-logo-h.png" alt="" style={{ width:'100%', mixBlendMode:'screen' }}/>
         </div>
 
         {/* CONTENT — always single column, top to bottom */}
