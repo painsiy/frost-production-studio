@@ -192,60 +192,75 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Project cards — 1 col on mobile, masonry-style on desktop */}
-        <div className="reveal" style={{ display:'flex', flexDirection:'column', gap: isMobile ? '2px' : '2px' }}>
-          {PROJECTS.map((p, i) => (
-            <div
-              key={p.id}
-              className="proj-card"
-              style={{
-                opacity: visible(p.cat) ? 1 : 0.1,
-                transition: 'opacity .35s',
-                pointerEvents: visible(p.cat) ? 'auto' : 'none',
-                // Desktop: featured card taller, rest in 2-col grid via specific styles
-              }}
-            >
-              {/* Thumbnail */}
-              <div style={{
-                width: '100%',
-                aspectRatio: isMobile ? '16/9' : (p.featured ? '21/9' : '16/9'),
-                background: p.grad,
-                position: 'relative', overflow: 'hidden',
-                minHeight: isMobile ? 'unset' : (p.featured ? 280 : 'unset'),
-              }}>
-                {p.imageUrl && (
-                  <img
-                    src={p.imageUrl}
-                    alt={p.caption || p.title}
-                    style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center' }}
-                  />
-                )}
-                <div className="proj-overlay">
-                  <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
-                  <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? '1.4rem' : '1.8rem', color:'#fff', lineHeight:1.05 }}>
-                    {p.title.split('\n').map((line, j) => <span key={j}>{line}<br/></span>)}
+        {/* Project cards:
+             MOBILE  → single column, top to bottom
+             DESKTOP → 12-col asymmetric grid (Rideflow spans 8, others span 4) */}
+        {isMobile ? (
+          /* ── MOBILE: stacked single column ── */
+          <div className="reveal" style={{ display:'flex', flexDirection:'column', gap:'2.5rem' }}>
+            {PROJECTS.map((p) => (
+              <div key={p.id} className="proj-card" style={{ opacity: visible(p.cat)?1:0.1, transition:'opacity .35s', pointerEvents: visible(p.cat)?'auto':'none' }}>
+                <div style={{ width:'100%', aspectRatio:'16/9', background:p.grad, position:'relative', overflow:'hidden' }}>
+                  {p.imageUrl && <img src={p.imageUrl} alt={p.caption||p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>}
+                  <div className="proj-overlay">
+                    <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.8rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
+                    <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.5rem', color:'#fff', lineHeight:1.05 }}>
+                      {p.title.split('\n').map((line,j)=><span key={j}>{line}<br/></span>)}
+                    </div>
+                    <span style={{ fontFamily:'var(--font-ui)', marginTop:'.5rem', fontSize:'0.78rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
+                    {p.link
+                      ? <Link to={p.link} style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View Case Study →</Link>
+                      : <Link to="/projects" style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View →</Link>
+                    }
                   </div>
-                  <span style={{ fontFamily:'var(--font-ui)', marginTop:'.6rem', fontSize:'0.82rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
-                  {p.link
-                    ? <Link to={p.link} style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', alignItems:'center', gap:'.6rem', fontSize:'0.82rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View Case Study →</Link>
-                    : <Link to="/projects" style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', alignItems:'center', gap:'.6rem', fontSize:'0.82rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View →</Link>
-                  }
+                </div>
+                <div style={{ padding:'0.9rem 0', borderTop:'1px solid rgba(10,15,30,.08)', display:'flex', justifyContent:'space-between', alignItems:'center' }}>
+                  <div>
+                    <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--accent)' }}>{p.captionTag||(`${p.tag} · ${p.year}`)}</div>
+                    <div style={{ fontFamily:'var(--font-body)', fontSize:'0.95rem', color:'var(--ink)', marginTop:'.15rem' }}>{p.caption||p.title}</div>
+                  </div>
+                  <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'2rem', color:'rgba(10,15,30,.06)' }}>{p.num}</div>
                 </div>
               </div>
-
-              {/* Caption — always visible on featured, shown below thumb on mobile for all */}
-              {(p.featured || isMobile) && (
-                <div style={{ padding: isMobile ? '1rem 0' : '1rem 1.4rem', background: isMobile ? 'transparent' : 'var(--ink)', display:'flex', justifyContent:'space-between', alignItems:'center', borderTop: isMobile ? '1px solid rgba(10,15,30,.08)' : 'none' }}>
-                  <div>
-                    <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--accent)' }}>{p.captionTag || `${p.tag} · ${p.year}`}</div>
-                    <div style={{ fontFamily:'var(--font-body)', fontSize: isMobile ? '0.95rem' : '1.05rem', color: isMobile ? 'var(--ink)' : 'var(--paper)', marginTop:'.15rem' }}>{p.caption || p.title}</div>
+            ))}
+          </div>
+        ) : (
+          /* ── DESKTOP: 12-column asymmetric grid ── */
+          <div className="reveal" style={{ display:'grid', gridTemplateColumns:'repeat(12,1fr)', gap:2 }}>
+            {PROJECTS.map((p, i) => {
+              // Col spans: Rideflow=8 spanning 2 rows, others=4
+              const colSpan = p.featured ? 'span 8' : 'span 4'
+              const rowSpan = p.featured ? 'span 2' : 'span 1'
+              return (
+                <div key={p.id} className="proj-card" style={{ gridColumn:colSpan, gridRow:rowSpan, opacity:visible(p.cat)?1:0.1, transition:'opacity .35s', pointerEvents:visible(p.cat)?'auto':'none' }}>
+                  <div style={{ width:'100%', height: p.featured ? '100%' : 'auto', minHeight: p.featured ? 480 : 'unset', aspectRatio: p.featured ? 'unset' : '4/3', background:p.grad, position:'relative', overflow:'hidden' }}>
+                    {p.imageUrl && <img src={p.imageUrl} alt={p.caption||p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>}
+                    <div className="proj-overlay">
+                      <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
+                      <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.8rem', color:'#fff', lineHeight:1.05 }}>
+                        {p.title.split('\n').map((line,j)=><span key={j}>{line}<br/></span>)}
+                      </div>
+                      <span style={{ fontFamily:'var(--font-ui)', marginTop:'.6rem', fontSize:'0.82rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
+                      {p.link
+                        ? <Link to={p.link} style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.82rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View Case Study →</Link>
+                        : <Link to="/projects" style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.82rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View →</Link>
+                      }
+                    </div>
                   </div>
-                  <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'2.4rem', color: isMobile ? 'rgba(10,15,30,.06)' : 'rgba(232,237,245,.05)' }}>{p.num}</div>
+                  {p.featured && (
+                    <div style={{ padding:'1rem 1.4rem', background:'var(--ink)', display:'flex', justifyContent:'space-between', alignItems:'center' }}>
+                      <div>
+                        <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--accent)' }}>{p.captionTag}</div>
+                        <div style={{ fontFamily:'var(--font-body)', fontSize:'1.05rem', color:'var(--paper)', marginTop:'.15rem' }}>{p.caption}</div>
+                      </div>
+                      <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'2.4rem', color:'rgba(232,237,245,.05)' }}>{p.num}</div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
+              )
+            })}
+          </div>
+        )}
 
         <div className="reveal" style={{ display:'flex', justifyContent:'center', marginTop: isMobile ? '2rem' : '3rem' }}>
           <Link to="/projects" style={{ padding:'.9rem 2.2rem', border:'1px solid rgba(10,15,30,.18)', display:'inline-flex', alignItems:'center', gap:'.6rem', fontFamily:'var(--font-ui)', fontSize:'0.85rem', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--ink)', background:'none' }}>
