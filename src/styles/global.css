@@ -271,3 +271,70 @@ select option:checked { background-color:var(--accent) !important; }
 @keyframes bounce { 0%,60%,100%{transform:translateY(0);} 30%{transform:translateY(-8px);} }
 @keyframes pulse-dot { 0%,100%{opacity:1;} 50%{opacity:.3;} }
 @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+
+/* ══════════════════════════════════════════════════════════
+   LIGHT MODE — AGGRESSIVE TEXT OVERRIDE
+   Force ALL text to black (#0d1120) on light theme.
+   Only exceptions: accent blue, white-on-dark-bg elements,
+   and the Rideflow/Nova hero sections which stay dark.
+══════════════════════════════════════════════════════════ */
+
+/* Every element on the page gets dark text in light mode */
+[data-theme="light"] *:not(nav):not(nav *) {
+  color: #0d1120 !important;
+}
+
+/* Restore accent blue where needed */
+[data-theme="light"] [style*="color:var(--accent)"],
+[data-theme="light"] [style*="color: var(--accent)"],
+[data-theme="light"] .section-label,
+[data-theme="light"] [style*="color:'var(--accent)'"],
+[data-theme="light"] [style*="color: 'var(--accent)'"] {
+  color: var(--accent) !important;
+}
+
+/* Muted text stays grey (readable on light) */
+[data-theme="light"] [style*="color:var(--muted)"],
+[data-theme="light"] [style*="color: var(--muted)"],
+[data-theme="light"] [style*="color:'var(--muted)'"],
+[data-theme="light"] [style*="color: 'var(--muted)'"] {
+  color: #526080 !important;
+}
+
+/* Buttons — primary stays white text on blue bg */
+[data-theme="light"] .btn-primary,
+[data-theme="light"] .btn-primary * { color: #ffffff !important; }
+[data-theme="light"] .btn-primary svg { stroke: #ffffff !important; fill: #ffffff !important; }
+
+/* Accent strip sections (marquee, about strip, tools) — white text on blue bg */
+[data-theme="light"] [style*="background:var(--accent)"] *,
+[data-theme="light"] [style*="background: var(--accent)"] *,
+[data-theme="light"] [style*="background:'var(--accent)'"] * {
+  color: #ffffff !important;
+}
+
+/* Nav — uses its own theme logic in Nav.jsx, leave alone */
+[data-theme="light"] nav,
+[data-theme="light"] nav * { color: unset; }
+
+/* Rideflow hero — always dark bg, keep text white */
+[data-theme="light"] #rf-hero,
+[data-theme="light"] #rf-hero * { color: #ffffff !important; }
+
+/* Project Nova hero — always dark bg */
+[data-theme="light"] #hero,
+[data-theme="light"] #hero * { color: #ffffff !important; }
+
+/* Project overlay on cards — dark gradient bg, keep white */
+[data-theme="light"] .proj-overlay,
+[data-theme="light"] .proj-overlay * { color: #ffffff !important; }
+
+/* Footer */
+[data-theme="light"] .site-footer { color: #526080 !important; }
+[data-theme="light"] .site-footer .footer-logo { color: #0d1120 !important; }
+
+/* SVG icons — stroke + fill follow text colour */
+[data-theme="light"] svg { color: #0d1120; }
+[data-theme="light"] svg path,
+[data-theme="light"] svg polyline,
+[data-theme="light"] svg circle { stroke: currentColor; }
