@@ -236,14 +236,12 @@ export default function ProjectRideflow() {
           {/* Rideflow horizontal logo — the REAL wordmark, never overridden */}
           <div style={{ animation:'fadeUp .9s .35s forwards', opacity:0 }}>
             <img
-              src="/frost-production-studio/images/rideflow-logo-h.png"
+              src="/frost-production-studio/images/rideflow-logo-new.svg"
               alt="Rideflow"
               style={{
-                height: isMobile ? 44 : 66,
+                height: isMobile ? 40 : 60,
                 width:'auto',
                 display:'block',
-                mixBlendMode:'screen',
-                filter:'brightness(1.1) saturate(1.1)',
               }}
             />
           </div>
@@ -515,7 +513,7 @@ export default function ProjectRideflow() {
           {/* Rideflow horizontal logo — white via screen blend */}
           <div style={{ display:'flex', justifyContent:'center', marginBottom:'2rem' }}>
             <img
-              src="/frost-production-studio/images/rideflow-logo-h.png"
+              src="/frost-production-studio/images/rideflow-logo-new.svg"
               alt="Rideflow"
               style={{ height: isMobile ? 36 : 44, width:'auto', mixBlendMode:'screen', filter:'brightness(1.1) saturate(0) invert(1)', opacity:.55 }}
             />
