@@ -64,9 +64,9 @@ export default function Projects() {
 
       {/* ── PAGE HEADER ───────────────────────────────── */}
       <div style={{
-        minHeight: isMobile ? '40vh' : '52vh',
-        display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-        padding: isMobile ? `5.5rem ${px} 2.5rem` : `6rem ${px} 3.5rem`,
+        minHeight: 'auto',
+        display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
+        padding: isMobile ? `5.5rem ${px} 2.5rem` : `6rem ${px} 3rem`,
         position: 'relative', overflow: 'hidden',
         borderBottom: '1px solid var(--border)',
       }}>
@@ -147,28 +147,30 @@ export default function Projects() {
               onMouseEnter={() => setHovered(p.id)}
               onMouseLeave={() => setHovered(null)}
             >
-              {/* Thumbnail */}
-              <div style={{ width:'100%', aspectRatio:'16/9', background: p.grad, position:'relative', overflow:'hidden' }}>
-                {p.imageUrl && (
-                  <img
-                    src={p.imageUrl}
-                    alt={p.title}
-                    style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center' }}
-                  />
-                )}
-                {/* Hover overlay */}
-                <div className="proj-overlay">
-                  <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
-                  <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.6rem', color:'#fff', lineHeight:1.05 }}>{p.title}</div>
-                  <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em', marginTop:'.5rem' }}>{p.year}</span>
-                  {p.link
-                    ? <Link to={p.link} style={{ marginTop:'1rem', display:'inline-flex', fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View Case Study →</Link>
-                    : <span style={{ marginTop:'1rem', fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--muted)' }}>Coming Soon</span>
-                  }
+              {/* Thumbnail — whole image clickable if has link */}
+              {p.link ? (
+                <Link to={p.link} style={{ display:'block', width:'100%', aspectRatio:'16/9', background:p.grad, position:'relative', overflow:'hidden' }}>
+                  {p.imageUrl && <img src={p.imageUrl} alt={p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center' }}/>}
+                  <div className="proj-overlay">
+                    <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
+                    <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.6rem', color:'#fff', lineHeight:1.05 }}>{p.title}</div>
+                    <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em', marginTop:'.5rem' }}>{p.year}</span>
+                    <span style={{ marginTop:'1rem', display:'inline-flex', fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color:'#fff', background:'var(--accent)', padding:'.32rem .85rem' }}>View Case Study →</span>
+                  </div>
+                  <div style={{ position:'absolute', top:'1rem', right:'1rem', fontFamily:'var(--font-display)', fontWeight:900, fontSize:'3rem', color:'rgba(232,237,245,.06)', lineHeight:1, userSelect:'none' }}>{p.num}</div>
+                </Link>
+              ) : (
+                <div style={{ width:'100%', aspectRatio:'16/9', background:p.grad, position:'relative', overflow:'hidden' }}>
+                  {p.imageUrl && <img src={p.imageUrl} alt={p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center' }}/>}
+                  <div className="proj-overlay">
+                    <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
+                    <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.6rem', color:'#fff', lineHeight:1.05 }}>{p.title}</div>
+                    <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em', marginTop:'.5rem' }}>{p.year}</span>
+                    <span style={{ marginTop:'1rem', display:'inline-flex', fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--muted)' }}>Coming Soon</span>
+                  </div>
+                  <div style={{ position:'absolute', top:'1rem', right:'1rem', fontFamily:'var(--font-display)', fontWeight:900, fontSize:'3rem', color:'rgba(232,237,245,.06)', lineHeight:1, userSelect:'none' }}>{p.num}</div>
                 </div>
-                {/* Number watermark */}
-                <div style={{ position:'absolute', top:'1rem', right:'1rem', fontFamily:'var(--font-display)', fontWeight:900, fontSize:'3rem', color:'rgba(232,237,245,.06)', lineHeight:1, userSelect:'none' }}>{p.num}</div>
-              </div>
+              )}
 
               {/* Caption — always visible below thumbnail */}
               <div style={{

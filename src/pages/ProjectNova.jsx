@@ -371,7 +371,7 @@ const S = {
   chapterNav: { position:'fixed', right:'2.5rem', top:'50%', zIndex:400, transform:'translateY(-50%)', display:'flex', flexDirection:'column', gap:'.8rem', transition:'opacity .4s', pointerEvents:'auto' },
   dot: { width:6, height:6, borderRadius:'50%', cursor:'none', transition:'all .3s' },
 
-  heroSection: { minHeight:'100vh', display:'grid', placeItems:'center', position:'relative', overflow:'hidden', padding:'8rem 3rem 4rem' },
+  heroSection: { minHeight:'auto', display:'flex', flexDirection:'column', justifyContent:'flex-start', position:'relative', overflow:'hidden', padding:'8rem 3rem 4rem' },
   heroBg: { position:'absolute', inset:0, background:'radial-gradient(ellipse 70% 60% at 65% 35%,rgba(30,111,255,.08),transparent 65%),linear-gradient(160deg,#04080f 0%,#060c18 50%,#04080f 100%)' },
   heroGrid: { position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(30,111,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(30,111,255,.03) 1px,transparent 1px)', backgroundSize:'80px 80px' },
   heroInner: { position:'relative', zIndex:2, maxWidth:1200, width:'100%' },

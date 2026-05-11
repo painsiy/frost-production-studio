@@ -61,8 +61,8 @@ export default function About() {
 
       {/* ── PAGE HEADER ──────────────────────────────────── */}
       <div style={{
-        minHeight: isMobile ? '45vh' : '55vh',
-        display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
+        minHeight: 'auto',
+        display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
         padding: isMobile ? '5.5rem 1.5rem 2.5rem' : '6rem 3rem 3.5rem',
         position: 'relative', overflow: 'hidden',
         borderBottom: '1px solid var(--border)',

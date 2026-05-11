@@ -197,7 +197,7 @@ export default function ProjectRideflow() {
       ══════════════════════════════════════════════ */}
       <section style={{
         minHeight:'100vh', display:'flex', flexDirection:'column',
-        justifyContent:'flex-end', position:'relative', overflow:'hidden',
+        justifyContent:'flex-start', position:'relative', overflow:'hidden',
         padding: isMobile ? '5.5rem 1.5rem 3rem' : '6rem 3rem 4rem',
       }}>
         {/* Full-bleed clean background image */}

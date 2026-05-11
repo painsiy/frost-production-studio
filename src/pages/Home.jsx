@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTheme } from '../context/ThemeContext'
 
 function useReveal() {
   const ref = useRef(null)
@@ -49,6 +50,8 @@ const FILTERS = ['all','branding','broadcast','3d','ui']
 export default function Home() {
   const page     = useReveal()
   const isMobile = useIsMobile()
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
   const [cat,   setCat]   = useState('all')
   const [modal, setModal] = useState(false)
 
@@ -62,16 +65,15 @@ export default function Home() {
       {/* ── HERO ─────────────────────────────────────────── */}
       <section style={{
         minHeight: '100vh',
-        display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-        padding: isMobile ? `5.5rem ${px} 2.5rem` : `0 ${px} 3rem`,
+        display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
+        padding: isMobile ? `5.5rem ${px} 3rem` : `6rem ${px} 3rem`,
         position: 'relative', overflow: 'hidden',
       }}>
         <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 70% 60% at 65% 35%,rgba(30,111,255,.08),transparent 65%),linear-gradient(160deg,#04080f 0%,#060c18 60%,#04080f 100%)' }}/>
         <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(30,111,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(30,111,255,.03) 1px,transparent 1px)', backgroundSize:'80px 80px' }}/>
         <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', fontFamily:'var(--font-display)', fontWeight:900, fontSize:'clamp(6rem,22vw,22rem)', color:'transparent', WebkitTextStroke:'1px rgba(30,111,255,.035)', whiteSpace:'nowrap', userSelect:'none', pointerEvents:'none' }}>RICHARD</div>
 
-        {/* Spacer — only needed on desktop where we use grid-style layout */}
-        {!isMobile && <div style={{ flex:1 }}/>}
+
 
         {/* Main content — always single column */}
         <div style={{ position:'relative', zIndex:2, display:'flex', flexDirection:'column' }}>
@@ -106,7 +108,7 @@ export default function Home() {
             <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.22em', textTransform:'uppercase', color:'var(--muted)' }}>Scroll to explore</span>
           </div>
           <div style={{ display:'flex', gap: isMobile ? '1.5rem' : '3rem', flexWrap:'wrap' }}>
-            {[['8+','Years'],['200+','Projects'],['60+','Clients']].map(([n,l]) => (
+            {[['8+','Years'],['400+','Projects'],['80+','Clients']].map(([n,l]) => (
               <div key={l}>
                 <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize: isMobile ? '2rem' : '2.8rem', lineHeight:1 }}>{n}</div>
                 <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.78rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--muted)', marginTop:'.3rem' }}>{l}</div>
@@ -200,20 +202,31 @@ export default function Home() {
           <div className="reveal" style={{ display:'flex', flexDirection:'column', gap:'2.5rem' }}>
             {PROJECTS.map((p) => (
               <div key={p.id} className="proj-card" style={{ opacity: visible(p.cat)?1:0.1, transition:'opacity .35s', pointerEvents: visible(p.cat)?'auto':'none' }}>
-                <div style={{ width:'100%', aspectRatio:'16/9', background:p.grad, position:'relative', overflow:'hidden' }}>
-                  {p.imageUrl && <img src={p.imageUrl} alt={p.caption||p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>}
-                  <div className="proj-overlay">
-                    <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.8rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
-                    <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.5rem', color:'#fff', lineHeight:1.05 }}>
-                      {p.title.split('\n').map((line,j)=><span key={j}>{line}<br/></span>)}
+                {/* Entire thumbnail is clickable */}
+                {p.link ? (
+                  <Link to={p.link} style={{ display:'block', width:'100%', aspectRatio:'16/9', background:p.grad, position:'relative', overflow:'hidden' }}>
+                    {p.imageUrl && <img src={p.imageUrl} alt={p.caption||p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>}
+                    <div className="proj-overlay">
+                      <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.8rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
+                      <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.5rem', color:'#fff', lineHeight:1.05 }}>
+                        {p.title.split('\n').map((line,j)=><span key={j}>{line}<br/></span>)}
+                      </div>
+                      <span style={{ fontFamily:'var(--font-ui)', marginTop:'.5rem', fontSize:'0.78rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
+                      <span style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color: isDark ? '#fff' : '#0d1120', background: isDark ? 'rgba(255,255,255,.15)' : '#0d1120', padding:'.35rem .9rem', border: isDark ? '1px solid rgba(255,255,255,.3)' : 'none' }}>View Case Study →</span>
                     </div>
-                    <span style={{ fontFamily:'var(--font-ui)', marginTop:'.5rem', fontSize:'0.78rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
-                    {p.link
-                      ? <Link to={p.link} style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View Case Study →</Link>
-                      : <Link to="/projects" style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View →</Link>
-                    }
+                  </Link>
+                ) : (
+                  <div style={{ width:'100%', aspectRatio:'16/9', background:p.grad, position:'relative', overflow:'hidden' }}>
+                    {p.imageUrl && <img src={p.imageUrl} alt={p.caption||p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>}
+                    <div className="proj-overlay">
+                      <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.8rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
+                      <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.5rem', color:'#fff', lineHeight:1.05 }}>
+                        {p.title.split('\n').map((line,j)=><span key={j}>{line}<br/></span>)}
+                      </div>
+                      <span style={{ fontFamily:'var(--font-ui)', marginTop:'.5rem', fontSize:'0.78rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
+                    </div>
                   </div>
-                </div>
+                )}
                 <div style={{ padding:'0.9rem 0', borderTop:'1px solid rgba(10,15,30,.08)', display:'flex', justifyContent:'space-between', alignItems:'center' }}>
                   <div>
                     <div style={{ fontFamily:'var(--font-ui)', fontSize:'0.72rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--accent)' }}>{p.captionTag||(`${p.tag} · ${p.year}`)}</div>
@@ -233,20 +246,31 @@ export default function Home() {
               const rowSpan = p.featured ? 'span 2' : 'span 1'
               return (
                 <div key={p.id} className="proj-card" style={{ gridColumn:colSpan, gridRow:rowSpan, opacity:visible(p.cat)?1:0.1, transition:'opacity .35s', pointerEvents:visible(p.cat)?'auto':'none' }}>
-                  <div style={{ width:'100%', height: p.featured ? '100%' : 'auto', minHeight: p.featured ? 480 : 'unset', aspectRatio: p.featured ? 'unset' : '4/3', background:p.grad, position:'relative', overflow:'hidden' }}>
-                    {p.imageUrl && <img src={p.imageUrl} alt={p.caption||p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>}
-                    <div className="proj-overlay">
-                      <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
-                      <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.8rem', color:'#fff', lineHeight:1.05 }}>
-                        {p.title.split('\n').map((line,j)=><span key={j}>{line}<br/></span>)}
+                  {/* Entire thumbnail clickable */}
+                  {p.link ? (
+                    <Link to={p.link} style={{ display:'block', width:'100%', height: p.featured ? '100%' : 'auto', minHeight: p.featured ? 480 : 'unset', aspectRatio: p.featured ? 'unset' : '4/3', background:p.grad, position:'relative', overflow:'hidden' }}>
+                      {p.imageUrl && <img src={p.imageUrl} alt={p.caption||p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>}
+                      <div className="proj-overlay">
+                        <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
+                        <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.8rem', color:'#fff', lineHeight:1.05 }}>
+                          {p.title.split('\n').map((line,j)=><span key={j}>{line}<br/></span>)}
+                        </div>
+                        <span style={{ fontFamily:'var(--font-ui)', marginTop:'.6rem', fontSize:'0.82rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
+                        <span style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.82rem', letterSpacing:'.15em', textTransform:'uppercase', color: isDark ? '#fff' : '#0d1120', background: isDark ? 'rgba(255,255,255,.15)' : '#0d1120', padding:'.35rem .9rem', border: isDark ? '1px solid rgba(255,255,255,.3)' : 'none' }}>View Case Study →</span>
                       </div>
-                      <span style={{ fontFamily:'var(--font-ui)', marginTop:'.6rem', fontSize:'0.82rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
-                      {p.link
-                        ? <Link to={p.link} style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.82rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View Case Study →</Link>
-                        : <Link to="/projects" style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.82rem', letterSpacing:'.15em', textTransform:'uppercase', color:'var(--paper)' }}>View →</Link>
-                      }
+                    </Link>
+                  ) : (
+                    <div style={{ width:'100%', height: p.featured ? '100%' : 'auto', minHeight: p.featured ? 480 : 'unset', aspectRatio: p.featured ? 'unset' : '4/3', background:p.grad, position:'relative', overflow:'hidden' }}>
+                      {p.imageUrl && <img src={p.imageUrl} alt={p.caption||p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>}
+                      <div className="proj-overlay">
+                        <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
+                        <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'1.8rem', color:'#fff', lineHeight:1.05 }}>
+                          {p.title.split('\n').map((line,j)=><span key={j}>{line}<br/></span>)}
+                        </div>
+                        <span style={{ fontFamily:'var(--font-ui)', marginTop:'.6rem', fontSize:'0.82rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
+                      </div>
                     </div>
-                  </div>
+                  )}
                   {p.featured && (
                     <div style={{ padding:'1rem 1.4rem', background:'var(--ink)', display:'flex', justifyContent:'space-between', alignItems:'center' }}>
                       <div>
