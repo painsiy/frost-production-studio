@@ -204,7 +204,7 @@ export default function Home() {
               <div key={p.id} className="proj-card" style={{ opacity: visible(p.cat)?1:0.1, transition:'opacity .35s', pointerEvents: visible(p.cat)?'auto':'none' }}>
                 {/* Entire thumbnail is clickable */}
                 {p.link ? (
-                  <Link to={p.link} style={{ display:'block', width:'100%', aspectRatio:'16/9', background:p.grad, position:'relative', overflow:'hidden' }}>
+                  <Link to={p.link} style={{ display:'block', width:'100%', aspectRatio:'16/9', background:p.grad, position:'relative', overflow:'hidden', outline:'none', textDecoration:'none', border:'none' }}>
                     {p.imageUrl && <img src={p.imageUrl} alt={p.caption||p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>}
                     <div className="proj-overlay">
                       <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.8rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
@@ -212,7 +212,7 @@ export default function Home() {
                         {p.title.split('\n').map((line,j)=><span key={j}>{line}<br/></span>)}
                       </div>
                       <span style={{ fontFamily:'var(--font-ui)', marginTop:'.5rem', fontSize:'0.78rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
-                      <span style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color: isDark ? '#fff' : '#0d1120', background: isDark ? 'rgba(255,255,255,.15)' : '#0d1120', padding:'.35rem .9rem', border: isDark ? '1px solid rgba(255,255,255,.3)' : 'none' }}>View Case Study →</span>
+                      <span style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.78rem', letterSpacing:'.15em', textTransform:'uppercase', color: '#fff', background: 'var(--accent)', padding:'.35rem .9rem' }}>View Case Study →</span>
                     </div>
                   </Link>
                 ) : (
@@ -248,7 +248,7 @@ export default function Home() {
                 <div key={p.id} className="proj-card" style={{ gridColumn:colSpan, gridRow:rowSpan, opacity:visible(p.cat)?1:0.1, transition:'opacity .35s', pointerEvents:visible(p.cat)?'auto':'none' }}>
                   {/* Entire thumbnail clickable */}
                   {p.link ? (
-                    <Link to={p.link} style={{ display:'block', width:'100%', height: p.featured ? '100%' : 'auto', minHeight: p.featured ? 480 : 'unset', aspectRatio: p.featured ? 'unset' : '4/3', background:p.grad, position:'relative', overflow:'hidden' }}>
+                    <Link to={p.link} style={{ display:'block', width:'100%', height: p.featured ? '100%' : 'auto', minHeight: p.featured ? 480 : 'unset', aspectRatio: p.featured ? 'unset' : '4/3', background:p.grad, position:'relative', overflow:'hidden', outline:'none', textDecoration:'none', border:'none' }}>
                       {p.imageUrl && <img src={p.imageUrl} alt={p.caption||p.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>}
                       <div className="proj-overlay">
                         <span style={{ fontFamily:'var(--font-ui)', fontSize:'0.82rem', letterSpacing:'.18em', textTransform:'uppercase', color:'var(--accent)', marginBottom:'.5rem' }}>{p.tag}</span>
@@ -256,7 +256,7 @@ export default function Home() {
                           {p.title.split('\n').map((line,j)=><span key={j}>{line}<br/></span>)}
                         </div>
                         <span style={{ fontFamily:'var(--font-ui)', marginTop:'.6rem', fontSize:'0.82rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em' }}>{p.year}</span>
-                        <span style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.82rem', letterSpacing:'.15em', textTransform:'uppercase', color: isDark ? '#fff' : '#0d1120', background: isDark ? 'rgba(255,255,255,.15)' : '#0d1120', padding:'.35rem .9rem', border: isDark ? '1px solid rgba(255,255,255,.3)' : 'none' }}>View Case Study →</span>
+                        <span style={{ fontFamily:'var(--font-ui)', marginTop:'1rem', display:'inline-flex', fontSize:'0.82rem', letterSpacing:'.15em', textTransform:'uppercase', color: '#fff', background: 'var(--accent)', padding:'.35rem .9rem' }}>View Case Study →</span>
                       </div>
                     </Link>
                   ) : (

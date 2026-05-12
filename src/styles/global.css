@@ -338,3 +338,15 @@ select option:checked { background-color:var(--accent) !important; }
 [data-theme="light"] svg path,
 [data-theme="light"] svg polyline,
 [data-theme="light"] svg circle { stroke: currentColor; }
+
+/* ── REMOVE BROWSER DEFAULT LINK OUTLINES ON CARDS ────── */
+.proj-card a,
+.proj-card a:focus,
+.proj-card a:active,
+.proj-card a:visited {
+  outline: none !important;
+  border: none !important;
+  text-decoration: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+a:focus { outline: none; }
