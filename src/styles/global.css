@@ -350,3 +350,24 @@ select option:checked { background-color:var(--accent) !important; }
   -webkit-tap-highlight-color: transparent;
 }
 a:focus { outline: none; }
+
+/* ── CASE STUDY BUTTON — protect from global overrides ── */
+/* Dark: white text on blue bg. Light: black text on white bg */
+[data-theme="dark"] .case-study-btn {
+  color: #ffffff !important;
+  background: var(--accent) !important;
+}
+[data-theme="light"] .case-study-btn {
+  color: #0d1120 !important;
+  background: #ffffff !important;
+}
+
+/* ── REMOVE ALL LINK BARS / OUTLINES / FOCUS RINGS ────── */
+a, a:hover, a:focus, a:active, a:visited {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  text-decoration: none !important;
+}
+*:focus { outline: none !important; box-shadow: none !important; }
+*:focus-visible { outline: none !important; }

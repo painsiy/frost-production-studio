@@ -131,7 +131,7 @@ function VideoPlayer({ youtubeId, xUrl, title, isMobile }) {
     >
       {/* Real Rideflow thumbnail image — fills the whole card */}
       <img
-        src="/frost-production-studio/images/rideflow-thumbnail.png"
+        src="/images/rideflow-thumbnail.png"
         alt="Rideflow"
         style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center' }}
       />
@@ -203,7 +203,7 @@ export default function ProjectRideflow() {
         {/* Full-bleed clean background image */}
         <div style={{
           position:'absolute', inset:0,
-          backgroundImage:"url('/frost-production-studio/images/rideflow-thumbnail.png')",
+          backgroundImage:"url('/images/rideflow-thumbnail.png')",
           backgroundSize:'cover', backgroundPosition:'center center',
         }}/>
         {/* Single clean gradient overlay — dark at bottom for text, subtle at top */}
@@ -236,7 +236,7 @@ export default function ProjectRideflow() {
           {/* Rideflow horizontal logo — the REAL wordmark, never overridden */}
           <div style={{ animation:'fadeUp .9s .35s forwards', opacity:0 }}>
             <img
-              src="/frost-production-studio/images/rideflow-logo-new.svg"
+              src="/images/rideflow-logo-new.svg"
               alt="Rideflow"
               style={{
                 height: isMobile ? 40 : 60,
@@ -513,7 +513,7 @@ export default function ProjectRideflow() {
           {/* Rideflow horizontal logo — white via screen blend */}
           <div style={{ display:'flex', justifyContent:'center', marginBottom:'2rem' }}>
             <img
-              src="/frost-production-studio/images/rideflow-logo-new.svg"
+              src="/images/rideflow-logo-new.svg"
               alt="Rideflow"
               style={{ height: isMobile ? 36 : 44, width:'auto', mixBlendMode:'screen', filter:'brightness(1.1) saturate(0) invert(1)', opacity:.55 }}
             />
