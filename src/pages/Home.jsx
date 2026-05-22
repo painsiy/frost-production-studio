@@ -38,7 +38,7 @@ const MARQUEE_ITEMS = [
 ]
 
 const PROJECTS = [
-  { id:1, cat:'branding', tag:'Motion Design · Brand Video', title:'Rideflow',         year:'2026', grad:'linear-gradient(160deg,#04080f 0%,#0d1526 50%,#2C4BFD 100%)', imageUrl:'/images/rideflow-thumbnail.png', link:'/project-rideflow', caption:'Rideflow',        captionTag:'Motion Design · 2026', num:'01', featured:true },
+  { id:1, cat:'branding', tag:'Motion Design · Brand Video', title:'Rideflow',         year:'2026', grad:'linear-gradient(160deg,#04080f 0%,#0d1526 50%,#2C4BFD 100%)', imageUrl:'/frost-production-studio/images/rideflow-thumbnail.png', link:'/project-rideflow', caption:'Rideflow',        captionTag:'Motion Design · 2026', num:'01', featured:true },
   { id:2, cat:'branding', tag:'Brand Identity',              title:'NOVA\nCOLLECTIVE', year:'2024', grad:'linear-gradient(135deg,#04080f 0%,#0d1a3a 40%,#1e6fff 100%)',                                                                   link:'/project-nova' },
   { id:3, cat:'broadcast',tag:'Broadcast',                   title:'DEEP CURRENT\nSERIES', year:'2024', grad:'linear-gradient(135deg,#060c18 0%,#0a1830 60%,#4a90d9 100%)' },
   { id:4, cat:'3d',       tag:'3D Animation',                title:'AURUM\nFRAGRANCE', year:'2023', grad:'linear-gradient(135deg,#06101a 0%,#0c2040 60%,#7aa8e8 100%)' },
