@@ -17,10 +17,7 @@ import ProjectRideflow from './pages/ProjectRideflow'
 
 function AppInner() {
   const { pathname } = useLocation()
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
 
   return (
     <>
@@ -36,7 +33,6 @@ function AppInner() {
         <Route path="/project-rideflow" element={<ProjectRideflow />} />
       </Routes>
       <Footer />
-      {/* Global settings toggle — appears on every page */}
       <SettingsToggle />
     </>
   )
